@@ -1,0 +1,88 @@
+.nav {
+    background: #1b262c;
+    position: sticky;
+    top: 0;
+
+}
+
+.nav::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.nav .logo {
+    float: left;
+    padding: 0px;
+    width: 90px;
+    height: 76.37px;
+    
+}
+
+.nav .list {
+    float: right;
+}
+
+.nav .list ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.nav .list ul li {
+    display: inline-block;
+    margin-left: 40px;
+    padding-top: 27px;
+    position: relative;
+}
+
+.nav .list ul li a {
+    color: #f2f6f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.nav .list li:hover {
+    color: #9da0a1;
+}
+
+.nav .list li::before {
+    content:"";
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #f2f6f7;
+    top: 5px;
+    position: absolute;
+    transition: all ease-in-out 200ms; 
+}
+
+.nav .list li:hover::before {
+    width: 100%;
+    
+}
+
+.nav .langpick select option {
+    background-color: #1b262c;
+}
+.nav {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.nav .langpick select{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    font-family: 'Tajawal', sans-serif;
+    /*background-image: url("https://i.ibb.co/GP2Wmrz/globe-01.png");
+    background-repeat: no-repeat, repeat;
+	background-position: right 1.15em top 50%, 0 0;
+	background-size: 1.3em auto, 100%;
+    -webkit-appearance: none;*/
+    width: 100px;
+    color: #FFF;
+    text-align: center;
+    text-align-last: center;
+}

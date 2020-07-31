@@ -1,0 +1,107 @@
+.rect {
+    background-color: #FFF;
+    width: 500px;
+    /*height: 350px;*/
+    margin: auto;
+    border-radius: 15px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.rect h3 {
+    text-align: center;
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.rect input[type="email"], [type="password"]{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 17px 10px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+
+}
+
+.rect input[type="text"][name="firstname"] {
+    width: 35%;
+    padding: 17px 10px;
+    margin-left: 40px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+    
+}
+.rect input[type="text"][name="lastname"] {
+    width: 35%;
+    margin-left: 30px;
+    padding: 17px 10px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+
+}
+
+
+.rect input::placeholder[type="email"], [type="password"], [type="text"] {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.rect input[type="email"]:focus, [type="password"]:focus{
+    outline: none;
+    border-bottom: 3px solid #FF385C;
+}
+
+.rect input[type="text"]:focus {
+    outline: none;
+    border-bottom: 3px solid #FF385C;
+}
+
+.rect input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    border: none;
+    outline: none;
+    padding: 16px;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    background: #3e78ad;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.rect input[type="submit"]:hover {
+    cursor: pointer;
+    background: #24496b;
+}
+
+.rect input[type="submit"]:active {
+    cursor: pointer;
+    background: #3e78ad;
+}
+
+.rect img{
+    display: block;
+    margin: 0 auto;
+    width: 150px;   
+}

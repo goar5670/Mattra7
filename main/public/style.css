@@ -1,0 +1,861 @@
+@import url('https://fonts.googleapis.com/css?family=Work Sans');
+@import url('https://fonts.googleapis.com/css?family=Tajawal');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+
+/* General */
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #FFF;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+/* PhotoInput Styling */
+
+.PhotoInput {
+    margin-right: 15px;
+    /* margin-left: 1px; */
+    float: left;
+    width: 89px;
+    height: 80px;
+    /* line-height: 76px; */
+    background-color: #cbd2d7;
+    border: 1px dashed #aaa;
+    border-radius: 3px;
+    justify-content: center;
+    display: flex;
+    /* text-align: center; */
+    align-items: center;
+}
+
+.first-photo .PhotoInput {
+    margin-left: 0.5px;
+}
+
+.last-photo .PhotoInput {
+    margin-right: 0px;
+}
+
+
+.last-photo .PhotoInput {
+    margin-right: 0px;
+    /* width: 1515151%; */
+}
+
+.PhotoInput:hover {
+    cursor: pointer;
+}
+
+.PhotoInput img {
+    max-width: 95%;
+    max-height: 95%;
+    /* vertical-align: middle; */
+    /* display: block; */
+    /* position: relative; */
+    /* top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; */
+}
+
+.PhotoInput input {
+    display: none;
+}
+
+/* Form Styling */
+
+.rect {
+    background-color: #FFF;
+    width: 500px;
+    /*height: 350px;*/
+    margin: auto;
+    border-radius: 15px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.rect h3 {
+    text-align: center;
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.rect .Email {
+    margin: 0 40px 20px;
+    width: 84%;
+}
+
+.rect .Password {
+    margin: 0 40px 20px;
+    width: 84%;
+}
+
+.rect .FirstName {
+    margin-left: 40px;
+    width: 38%;
+}
+
+.rect .LastName {
+    margin-left: 40px;
+    width: 38%;
+}
+
+/* .rect input[type="email"], [type="password"]{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 17px 10px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+
+}
+
+.rect input[type="text"][name="firstname"] {
+    width: 35%;
+    padding: 17px 10px;
+    margin-left: 40px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+    
+}
+.rect input[type="text"][name="lastname"] {
+    width: 35%;
+    margin-left: 30px;
+    padding: 17px 10px;
+    border-bottom: 3px solid rgb(101, 119, 134);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgb(245, 248, 250);
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: #2b2b2b;
+
+} */
+
+
+/* .rect input::placeholder[type="email"], [type="password"], [type="text"] {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.rect input[type="email"]:focus, [type="password"]:focus{
+    outline: none;
+    border-bottom: 3px solid #FF385C;
+}
+
+.rect input[type="text"]:focus {
+    outline: none;
+    border-bottom: 3px solid #FF385C;
+} */
+
+.rect input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    border: none;
+    outline: none;
+    padding: 16px;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    background: #3e78ad;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.rect input[type="submit"]:hover {
+    cursor: pointer;
+    background: #24496b;
+}
+
+.rect input[type="submit"]:active {
+    cursor: pointer;
+    background: #3e78ad;
+}
+
+.rect img{
+    display: block;
+    margin: 0 auto;
+    width: 150px;   
+}
+
+/* NavBar Styling */
+
+.nav {
+    background: #1b262c;
+    position: sticky;
+    top: 0;
+
+}
+
+.nav::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.nav .logo {
+    float: left;
+    padding: 0px;
+    width: 90px;
+    height: 76.37px;
+    
+}
+
+.nav .list {
+    float: right;
+}
+
+.nav .list ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.nav .list ul li {
+    display: inline-block;
+    margin-left: 40px;
+    padding-top: 27px;
+    position: relative;
+}
+
+.nav .list ul li a {
+    color: #f2f6f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.nav .list li:hover {
+    color: #9da0a1;
+}
+
+.nav .list li::before {
+    content:"";
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #f2f6f7;
+    top: 5px;
+    position: absolute;
+    transition: all ease-in-out 200ms; 
+}
+
+.nav .list li:hover::before {
+    width: 100%;
+    
+}
+
+.nav .langpick select option {
+    background-color: #1b262c;
+}
+
+.nav {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.nav .langpick select{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    font-family: 'Tajawal', sans-serif;
+    /*background-image: url("https://i.ibb.co/GP2Wmrz/globe-01.png");
+    background-repeat: no-repeat, repeat;
+	background-position: right 1.15em top 50%, 0 0;
+	background-size: 1.3em auto, 100%;
+    -webkit-appearance: none;*/
+    width: 100px;
+    color: #FFF;
+    text-align: center;
+    text-align-last: center;
+}
+
+
+
+.arabic {
+    font-family: "Tajawal", sans-serif;
+}
+
+/* Home Page Styling */
+
+.Home {
+    font-family: "Open Sans", sans-serif;
+    background-color: #FFF;
+    
+}
+
+.Home .main {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding-bottom: 60px;
+}
+.Home .header {
+    background-color: #FF385C;
+    color: white;
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+    padding: 150px;
+}
+
+.Home .header h1 {
+
+    font-size: 85px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.Home .header h3 {
+
+    font-size: larger;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+
+
+}
+
+.Home .footer {
+    background-color: #F7F7F7;
+    text-align: left;
+    padding: 20px;
+    clear: both;
+    color: black;
+    font-style: inherit;
+    padding-left: 150px;
+    padding-right: 150px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top-width: 1px;
+    border-top-color: #e3e1e1;
+    border-top-style: solid;
+}
+
+
+/* .Home .nav {
+    background: #1b262c;
+    position: sticky;
+    top: 0;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.Home .nav::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.Home .logo {
+    float: left;
+    padding: 0px;
+    width: 90px;
+    height: 76.37px;
+    
+}
+
+.Home .list {
+    float: right;
+}
+
+.Home .list ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.Home .list ul li {
+    display: inline-block;
+    margin-left: 40px;
+    padding-top: 27px;
+    position: relative;
+}
+
+.Home .list ul li a {
+    color: #f2f6f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+} */
+
+
+
+.Home .content, .Home .header {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.Home .content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: justify;
+}
+
+.Home .langpick select{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    font-family: 'Tajawal', sans-serif;
+    width: 100px;
+    color: #FFF;
+    text-align: center;
+    text-align-last: center;
+    }
+
+
+.Home .list li:hover {
+    color: #9da0a1;
+}
+
+.Home .list li::before {
+    content:"";
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #f2f6f7;
+    top: 5px;
+    position: absolute;
+    transition: all ease-in-out 200ms; 
+}
+
+.Home .list li:hover::before {
+    width: 100%;
+    
+}
+
+.Home .langpick select option {
+    background-color: #1b262c;
+}
+
+/* Lang Page Styling */
+
+.Lang {
+    font-family: "Open Sans", sans-serif;
+    background-color: #FF385C;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.Lang h1 {
+
+    font-size: 96px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.Lang h3 {
+
+    font-size: larger;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+}
+
+.Lang .arabic {
+    
+    font-family: "Tajawal", sans-serif;
+}
+
+.Lang .langmain {
+    padding-top: 130px;
+}
+
+
+.Lang .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    height: 10%;
+    
+}
+
+.Lang .langpick {
+    padding: 90px;
+}
+
+.Lang .langpick select {
+    padding: 10px;
+    padding-left: 20px;
+    width: 200px;
+    background: #FFF;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    text-align: left;
+    text-align-last: left;
+    font-family: 'Tajawal', sans-serif;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/768px-Globe_icon.svg.png");
+    background-repeat: no-repeat, repeat;
+	background-position: right 1.15em top 50%, 0 0;
+	background-size: .95em auto, 100%;
+    -webkit-appearance: none; 
+    }
+    
+    
+/*Login page styling*/
+
+
+.Login {
+    font-family: "Open Sans", sans-serif;
+    background-color: #FFF;
+    margin: auto;
+}
+
+/* .Login .nav {
+    background: #1b262c;
+    position: sticky;
+    top: 0;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.Login .nav::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.Login .logo {
+    float: left;
+    padding: 0px;
+    width: 90px;
+    height: 76.37px;
+    
+}
+
+.Login .list {
+    float: right;
+}
+
+.Login .list ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.Login .list ul li {
+    display: inline-block;
+    margin-left: 40px;
+    padding-top: 27px;
+    position: relative;
+}
+
+.Login .list ul li a {
+    color: #f2f6f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+
+.Login .list li:hover {
+    color: #9da0a1;
+}
+
+.Login .list li::before {
+    content:"";
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #f2f6f7;
+    top: 5px;
+    position: absolute;
+    transition: all ease-in-out 200ms; 
+}
+
+.Login .list li:hover::before {
+    width: 100%;
+    
+}
+
+.Login .langpick select{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    font-family: 'Tajawal', sans-serif;
+    width: 100px;
+    color: #FFF;
+    text-align: center;
+    text-align-last: center;
+    }
+
+.Login .langpick select option {
+    background-color: #1b262c;
+} */
+
+.Login .main {
+    min-height: 100vh;
+    position: relative;
+    background-color: #FF385C;
+    display: block;
+}
+
+.Login .content {
+    padding-top: 170px; 
+}
+
+/* Signup Page Styling */
+
+.Signup .main {
+    min-height: 100vh;
+    position: relative;
+    background-color: #FF385C;
+    display: block;
+}
+
+.Signup .content {
+    padding-top: 100px; 
+}
+
+
+/* List Page Styling */
+
+/* .List .main {
+    padding: 30px 30px 150px 150px;
+}
+.List .main .labels {
+    width: 150px;
+    float: left;
+    display: block;
+    text-align: right;
+}
+.List .main .labels label {
+    padding-bottom: 20px;
+    display: block;
+}
+
+.List .main .labels label[name="Description"] {
+    padding-top: 40px;
+    padding-bottom: 80px !important; 
+}
+
+.List .main .labels label[name="Photos"] {
+    padding-top: 36px;
+    padding-bottom: 45px;
+}
+
+.List .main label{
+    font-family: "Arial", Helvetica, sans-serif;
+    font-weight: bold;
+}
+.List .main span {
+    color: red;
+}
+.List .main .content {
+    float: left;
+    padding-left: 25px;
+    display: block;
+    width: 70%;
+}
+.List .main .content textarea {
+    resize: none;
+    border-radius: 3px;
+}
+
+.List .main .content input[type="file"] {
+    display: 'none' !important;
+    padding-top: 15px;
+}
+
+.List .main .content select {
+    margin-top: 10px;
+    margin-bottom: 17px;
+    display: block;
+    position: relative;
+} */
+
+.List .main {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding-bottom: 60px;
+
+}
+.List .header {
+    background-color: #FF385C;
+    color: white;
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+    padding: 75px;
+}
+
+.List .header h1 {
+
+    font-size: 36px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    /*text-transform: capitalize;*/
+}
+
+.List .footer {
+    background-color: #F7F7F7;
+    text-align: left;
+    padding: 20px;
+    clear: both;
+    color: black;
+    font-style: inherit;
+    padding-left: 150px;
+    padding-right: 150px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top-width: 1px;
+    border-top-color: #e3e1e1;
+    border-top-style: solid;
+}
+
+.List .content, .List .header {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.List table {
+    padding-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.List .label {
+    padding-right: 16px;
+    font-weight: normal;
+    font-size: 22px;
+    color: #484848;
+}
+
+.List td {
+    padding: 5px;
+    margin-top: 3px;
+}
+
+.List input[type="text"] {
+    width: 500px;
+    height: 30px;
+    font-size: 17px;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 9px;
+    outline: none;
+    border: 1px solid;
+    padding-left: 5px;
+    border-color: #bababa;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.List textarea {
+    font-size: 17px;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 9px;
+    outline: none;
+    border: 1px solid;
+    padding-left: 5px;
+    border-color: #bababa;
+    margin-bottom: 20px;
+    resize: none;
+    padding-top: 5px;
+    width: 100%;
+}
+
+.List .photos {
+    margin-bottom: 100px;
+}
+.List select {
+    background: #FFF;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 20px;
+    /*outline: none;*/
+    font-family: 'Tajawal', sans-serif;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    text-align-last: center;
+    height: 35px;
+    border-color: #bababa;
+    margin-bottom: 20px;
+}
+
+.List select option {
+    background-color: #fff;
+}
+
+.List hr {
+    width: 150%;
+    margin-left: -25%;
+    margin-bottom: 25px;
+}
+
+
+.List span {
+    vertical-align: super; 
+    font-size: small;    
+}
+
+.List .size {
+    width: 92%;
+}
+
+.List .m2 {
+    position: absolute;
+    margin-left: -40px;
+    margin-top: -16px;
+    font-size: 18px;
+}
+
+.List .price {
+    width: 80%;
+}
+
+.List .egp {
+    position: absolute;
+    margin-left: -100px;
+    margin-top: -10px;
+    font-size: 16px;
+}
+
+.List input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    padding: 16px;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    background: #FF385C;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.List input[type="submit"]:hover {
+    cursor: pointer;
+    background: #f55f7b;
+}
+
+.List input[type="submit"]:active {
+    cursor: pointer;
+    background: #FF385C;
+}
