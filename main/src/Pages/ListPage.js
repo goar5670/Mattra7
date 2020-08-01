@@ -1,7 +1,11 @@
 import React, { Component } from "react"
 import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
+import axios from "axios"
 // import ImageUploader from 'react-images-upload';
+
+const endpoint = "https://jsonbox.io/box_0bb53cd4d9fe6af89921";
+const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
 
 class ListPage extends Component
 {
@@ -11,11 +15,11 @@ class ListPage extends Component
             title: "",
             description: "",
             pictures: [
-                "https://i.ibb.co/XCNVgqq/New-Project-1.png",
-                "https://i.ibb.co/XCNVgqq/New-Project-1.png", 
-                "https://i.ibb.co/XCNVgqq/New-Project-1.png",
-                "https://i.ibb.co/XCNVgqq/New-Project-1.png",
-                "https://i.ibb.co/XCNVgqq/New-Project-1.png"
+                defaultPicture,
+                defaultPicture, 
+                defaultPicture,
+                defaultPicture,
+                defaultPicture
             ],
             governorate: "",
             address: "",
@@ -69,8 +73,9 @@ class ListPage extends Component
         }
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault()
+        const res = await axios.post(endpoint + "/todos", {item:this.state})
         console.log(this.state)
     }
 
@@ -95,7 +100,7 @@ class ListPage extends Component
                         <h1> Add a property</h1>
                     </div>
                     <div class="content">
-                    <div class= "listing-form">
+                        <div class= "listing-form">
                             <form onSubmit = {this.handleSubmit}>
                                 <table>
                                     <tr>
@@ -235,62 +240,13 @@ class ListPage extends Component
                                     </tr>
                                 </table>
                             </form>
-                    </div>
+                        </div>
                     </div>
                     <div class="footer">
                         &copy; 2020 Mattra7, Inc. All rights reserved. 
                     </div>
                 </div>
             </div>
-            // <div className = "List">
-            //     <NavBar />
-            //     <div className = "main">
-            //         <div className = "labels">
-            //             <label name="Title"> Title: </label> <br />
-            //             <label name="Description"> Description: </label>
-            //             <label name="Photos"> Photos: </label>
-            //             <label> Governorate: </label>
-            //             <label> Physical Address: </label> <br />
-            //         </div>
-            //         <div className = "content">
-            //             <textarea 
-            //                 name="title" 
-            //                 value={this.state.title} 
-            //                 rows="1" 
-            //                 cols="30"
-            //                 onChange={this.handleChange}
-            //             ></textarea> <br /><br />
-            //             <textarea 
-            //                 name="description" 
-            //                 value={this.state.description} 
-            //                 rows="8" 
-            //                 cols="30"
-            //                 onChange={this.handleChange}
-            //             ></textarea> <br /><br />
-            //             <div className="table">
-            //                 <PhotoInput handleChange = {this.handleUpload} id = "0" source={this.state.pictures[0]}/>
-            //                 <PhotoInput handleChange = {this.handleUpload} id = "1" source={this.state.pictures[1]}/>
-            //                 <PhotoInput handleChange = {this.handleUpload} id = "2" source={this.state.pictures[2]}/>
-            //                 <PhotoInput handleChange = {this.handleUpload} id = "3" source={this.state.pictures[3]}/>
-            //                 <PhotoInput handleChange = {this.handleUpload} id = "4" source={this.state.pictures[4]}/>
-            //             </div>
-            //             <br/>
-            //             <br/>
-            //             <br/>
-            //             <br/>
-            //             <select>
-            //                 {options}
-            //             </select>
-            //             <textarea 
-            //                 name="address" 
-            //                 value={this.state.title} 
-            //                 rows="1" 
-            //                 cols="50"
-            //                 onChange={this.handleChange}
-            //             ></textarea> <br />
-            //         </div>
-            //     </div>
-            // </div>
         )
     }
 }
