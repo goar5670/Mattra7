@@ -15,7 +15,7 @@ class PhotoInput extends Component {
     {
         return (
             <div className = {this.props.c}>
-                <div className = "PhotoInput">
+                <div className = "photo-input">
                     <input 
                         type = "file"
                         accept = "image/*"

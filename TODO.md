@@ -4,4 +4,4 @@
 
 3. required fields
 
-4. popover in listpage
+4. b2yet l popovers (m7taga ebram/mazen)

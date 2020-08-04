@@ -1,8 +1,11 @@
 import React, { Component } from "react"
+
+import {UncontrolledPopover, PopoverBody, PopoverHeader} from "reactstrap"
+// import "bootstrap/dist/css/bootstrap.css"
+import axios from "axios"
+
 import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
-import axios from "axios"
-// import ImageUploader from 'react-images-upload';
 
 const endpoint = "https://jsonbox.io/box_0bb53cd4d9fe6af89921";
 const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
@@ -110,10 +113,15 @@ class ListPage extends Component
                                         <td> 
                                             <input 
                                                 type = "text" 
+                                                id = "popover-title"
                                                 name = "title"
                                                 value = {this.state.title}
                                                 onChange = {this.handleChange}
-                                            /> 
+                                            />
+                                            <UncontrolledPopover  placement="right" target="popover-title" trigger="focus">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
                                     </tr>
                                     <tr>
@@ -122,6 +130,7 @@ class ListPage extends Component
                                     <tr>
                                         <td>
                                             <textarea 
+                                                id = "popover-description"
                                                 rows = "5" 
                                                 cols = "54" 
                                                 name = "description"
@@ -129,20 +138,28 @@ class ListPage extends Component
                                                 onChange = {this.handleChange}
                                             >
                                             </textarea>
+                                            <UncontrolledPopover  placement="right" target="popover-description" trigger="focus">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="label">Add pictures</td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div className="photos">
+                                        <td id="popover-photo">
+                                            <div className="photos" >
                                                 <PhotoInput handleChange = {this.handleUpload} id = "0" source={this.state.pictures[0]} c="first-photo"/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "1" source={this.state.pictures[1]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "2" source={this.state.pictures[2]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "3" source={this.state.pictures[3]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "4" source={this.state.pictures[4]} c="last-photo"/>
                                             </div>
+                                            <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
                                     </tr>
                                     <tr>
