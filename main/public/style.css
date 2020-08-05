@@ -80,7 +80,7 @@ body {
   }
   
   .bs-popover-right, .bs-popover-auto[x-placement^="right"] {
-    margin-left: 0.5rem;
+    margin-left: 2rem;
   }
   
   .bs-popover-right > .arrow, .bs-popover-auto[x-placement^="right"] > .arrow {
@@ -134,7 +134,7 @@ body {
   }
   
   .bs-popover-left, .bs-popover-auto[x-placement^="left"] {
-    margin-right: 0.5rem;
+    margin-right: 2rem;
   }
   
   .bs-popover-left > .arrow, .bs-popover-auto[x-placement^="left"] > .arrow {
@@ -711,7 +711,6 @@ body {
 }
 
 .List input[type="text"] {
-    width: 500px;
     height: 30px;
     font-size: 17px;
     font-family: "Open Sans", sans-serif;
@@ -747,7 +746,7 @@ body {
     border-radius: 6px;
     font-size: 20px;
     font-family: 'Tajawal', sans-serif;
-    width: 100%;
+    width: 101.7%;
     color: #000;
     text-align: center;
     text-align-last: center;

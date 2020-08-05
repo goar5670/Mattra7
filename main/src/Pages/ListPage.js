@@ -147,39 +147,49 @@ class ListPage extends Component
                                     <tr>
                                         <td class="label">Add pictures</td>
                                     </tr>
-                                    <tr>
-                                        <td id="popover-photo">
-                                            <div className="photos" >
+                                    <tr id="popover-photo">
+                                        <td>
+                                            <div className="photos">
                                                 <PhotoInput handleChange = {this.handleUpload} id = "0" source={this.state.pictures[0]} c="first-photo"/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "1" source={this.state.pictures[1]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "2" source={this.state.pictures[2]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "3" source={this.state.pictures[3]}/>
                                                 <PhotoInput handleChange = {this.handleUpload} id = "4" source={this.state.pictures[4]} c="last-photo"/>
                                             </div>
-                                            <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">
-                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
-                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
-                                            </UncontrolledPopover>
                                         </td>
+                                        <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">
+                                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </UncontrolledPopover>
                                     </tr>
                                     <tr>
                                         <td class="label">Governorate</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select name = "governorate" onChange = {this.handleChange}>
+                                            <select id="popover-governorate" name = "governorate" onChange = {this.handleChange}>
                                                 <option value="Giza">Giza</option>
                                                 <option value="Cairo">Cairo</option>
                                                 <option value="Alexandria">Alexandria</option>
-                                            </select>
+                                            </select>   
                                         </td>
+                                        <UncontrolledPopover  placement="right" target="popover-governorate" trigger="hover">
+                                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </UncontrolledPopover>
                                     </tr>
                                     <tr>
                                         <td class="label">Address</td>
                                     </tr>
                                     <tr>
-                                        <td> <input type="text" name = "address" value = {this.state.address} onChange = {this.handleChange}/> 
+                                        <td> 
+                                            <input id="popover-address" type="text" name = "address" value = {this.state.address} onChange = {this.handleChange}/> 
+                                            <UncontrolledPopover  placement="right" target="popover-address" trigger="focus">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
+                                        
                                     </tr>
                                     <tr>
                                         <td><hr /></td>
@@ -189,7 +199,7 @@ class ListPage extends Component
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select name = "rooms" onChange = {this.handleChange}>
+                                            <select id="popover-rooms" name = "rooms" onChange = {this.handleChange}>
                                                 <option valye="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -197,6 +207,10 @@ class ListPage extends Component
                                                 <option value="5">5</option>
                                                 <option value="6"> {temp5} </option>
                                             </select>
+                                            <UncontrolledPopover  placement="left" target="popover-rooms" trigger="hover">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
                                     </tr>
                                     <tr>
@@ -204,7 +218,7 @@ class ListPage extends Component
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select class="size" name = "size" onChange = {this.handleChange}>
+                                            <select id="popover-size" class="size" name = "size" onChange = {this.handleChange}>
                                                 <option value="1"> {temp1} </option>
                                                 <option value="2">75 - 100</option>
                                                 <option value="3">100 - 150</option>
@@ -212,6 +226,10 @@ class ListPage extends Component
                                                 <option value="5">200 - 250</option>
                                                 <option value="6"> {temp2}</option>
                                             </select>
+                                            <UncontrolledPopover  placement="left" target="popover-size" trigger="hover">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                             
                                         </td>
                                         <td class="m2"><p>m<span>2</span></p></td>
@@ -221,7 +239,7 @@ class ListPage extends Component
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select class="price" name = "price" onChange = {this.handleChange}>
+                                            <select id="popover-price" class="price" name = "price" onChange = {this.handleChange}>
                                                 <option value="1"> {temp3} </option>
                                                 <option value="2"> 1000 - 1500</option>
                                                 <option value="3"> 1500 - 2000</option>
@@ -229,6 +247,10 @@ class ListPage extends Component
                                                 <option value="5"> 2500 - 3000</option>
                                                 <option value="6"> {temp4} </option>
                                             </select>
+                                            <UncontrolledPopover  placement="left" target="popover-price" trigger="hover">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                             
                                         </td>
                                         <td class="egp"><p>EGP/month</p></td>
@@ -237,7 +259,7 @@ class ListPage extends Component
                                         <td class="label">Nearby university</td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td id="popover-university">
                                             <select name = "university" onChange = {this.handleChange}>
                                                 <option value="1">AUC</option>
                                                 <option value="2">BUE</option>
@@ -248,6 +270,10 @@ class ListPage extends Component
                                                 <option value="7">Other</option>
                                                 <option value="8">Non-applicable</option>
                                             </select>
+                                            <UncontrolledPopover  placement="left" target="popover-university" trigger="hover">
+                                                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
+                                                    Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                            </UncontrolledPopover>
                                         </td>
                                     </tr>
                                     <tr>
