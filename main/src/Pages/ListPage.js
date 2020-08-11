@@ -78,7 +78,7 @@ class ListPage extends Component
 
     async handleSubmit(event) {
         event.preventDefault()
-        const res = await axios.post(endpoint + "/todos", {item:this.state})
+        // const res = await axios.post(endpoint + "/todos", {item:this.state})
         console.log(this.state)
     }
 
@@ -96,18 +96,18 @@ class ListPage extends Component
         }) 
         return (
 
-            <div class="List">
-                <div class="main">
+            <div className="List">
+                <div className="main">
                     <NavBar />
-                    <div class="header">
+                    <div className="header">
                         <h1> Add a property</h1>
                     </div>
-                    <div class="content">
-                        <div class= "listing-form">
+                    <div className="content">
+                        <div className= "listing-form">
                             <form onSubmit = {this.handleSubmit}>
                                 <table>
                                     <tr>
-                                        <td class="label">Title</td>
+                                        <td className="label">Title</td>
                                     </tr>
                                     <tr>
                                         <td> 
@@ -125,7 +125,7 @@ class ListPage extends Component
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Description</td>
+                                        <td className="label">Description</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -145,7 +145,7 @@ class ListPage extends Component
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Add pictures</td>
+                                        <td className="label">Add pictures</td>
                                     </tr>
                                     <tr id="popover-photo">
                                         <td>
@@ -163,7 +163,7 @@ class ListPage extends Component
                                         </UncontrolledPopover>
                                     </tr>
                                     <tr>
-                                        <td class="label">Governorate</td>
+                                        <td className="label">Governorate</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -179,7 +179,7 @@ class ListPage extends Component
                                         </UncontrolledPopover>
                                     </tr>
                                     <tr>
-                                        <td class="label">Address</td>
+                                        <td className="label">Address</td>
                                     </tr>
                                     <tr>
                                         <td> 
@@ -195,7 +195,7 @@ class ListPage extends Component
                                         <td><hr /></td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Number of rooms</td>
+                                        <td className="label">Number of rooms</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -205,7 +205,7 @@ class ListPage extends Component
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
-                                                <option value="6"> {temp5} </option>
+                                                <option value={temp5}> {temp5} </option>
                                             </select>
                                             <UncontrolledPopover  placement="left" target="popover-rooms" trigger="hover">
                                                 <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
@@ -214,17 +214,17 @@ class ListPage extends Component
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Unit size</td>
+                                        <td className="label">Unit size</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select id="popover-size" class="size" name = "size" onChange = {this.handleChange}>
-                                                <option value="1"> {temp1} </option>
-                                                <option value="2">75 - 100</option>
-                                                <option value="3">100 - 150</option>
-                                                <option value="4">150 - 200</option>
-                                                <option value="5">200 - 250</option>
-                                                <option value="6"> {temp2}</option>
+                                            <select id="popover-size" className="size" name = "size" onChange = {this.handleChange}>
+                                                <option value={temp1}> {temp1} </option>
+                                                <option value="75 - 100">75 - 100</option>
+                                                <option value="100 - 150">100 - 150</option>
+                                                <option value="150 - 200">150 - 200</option>
+                                                <option value="200 - 250">200 - 250</option>
+                                                <option value={temp2}> {temp2}</option>
                                             </select>
                                             <UncontrolledPopover  placement="left" target="popover-size" trigger="hover">
                                                 <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
@@ -232,20 +232,20 @@ class ListPage extends Component
                                             </UncontrolledPopover>
                                             
                                         </td>
-                                        <td class="m2"><p>m<span>2</span></p></td>
+                                        <td className="m2"><p>m<span>2</span></p></td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Rent fee</td>
+                                        <td className="label">Rent fee</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select id="popover-price" class="price" name = "price" onChange = {this.handleChange}>
-                                                <option value="1"> {temp3} </option>
-                                                <option value="2"> 1000 - 1500</option>
-                                                <option value="3"> 1500 - 2000</option>
-                                                <option value="4"> 2000 - 2500</option>
-                                                <option value="5"> 2500 - 3000</option>
-                                                <option value="6"> {temp4} </option>
+                                            <select id="popover-price" className="price" name = "price" onChange = {this.handleChange}>
+                                                <option value={temp3}>{temp3} </option>
+                                                <option value="1000 - 1500">1000 - 1500</option>
+                                                <option value="1500 - 2000">1500 - 2000</option>
+                                                <option value="2000 - 2500">2000 - 2500</option>
+                                                <option value="2500 - 3000">2500 - 3000</option>
+                                                <option value={temp4}> {temp4} </option>
                                             </select>
                                             <UncontrolledPopover  placement="left" target="popover-price" trigger="hover">
                                                 <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 
@@ -253,22 +253,22 @@ class ListPage extends Component
                                             </UncontrolledPopover>
                                             
                                         </td>
-                                        <td class="egp"><p>EGP/month</p></td>
+                                        <td className="egp"><p>EGP/month</p></td>
                                     </tr>
                                     <tr>
-                                        <td class="label">Nearby university</td>
+                                        <td className="label">Nearby university</td>
                                     </tr>
                                     <tr>
                                         <td id="popover-university">
                                             <select name = "university" onChange = {this.handleChange}>
-                                                <option value="1">AUC</option>
-                                                <option value="2">BUE</option>
-                                                <option value="3">GUC</option>
-                                                <option value="4">MUST</option>
-                                                <option value="5">MSA</option>
-                                                <option value="6">AAST</option>
-                                                <option value="7">Other</option>
-                                                <option value="8">Non-applicable</option>
+                                                <option value="AUC">AUC</option>
+                                                <option value="BUE">BUE</option>
+                                                <option value="GUC">GUC</option>
+                                                <option value="MUST">MUST</option>
+                                                <option value="MSA">MSA</option>
+                                                <option value="AAST">AAST</option>
+                                                <option value="Other">Other</option>
+                                                <option value="Non-applicable">Non-applicable</option>
                                             </select>
                                             <UncontrolledPopover  placement="left" target="popover-university" trigger="hover">
                                                 <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. 

@@ -204,7 +204,6 @@ body {
 
 .last-photo .photo-input {
     margin-right: 0px;
-    /* width: 1515151%; */
 }
 
 .photo-input:hover {
@@ -214,14 +213,6 @@ body {
 .photo-input img {
     max-width: 95%;
     max-height: 95%;
-    /* vertical-align: middle; */
-    /* display: block; */
-    /* position: relative; */
-    /* top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto; */
 }
 
 .photo-input input {
@@ -323,35 +314,35 @@ body {
     
 }
 
-.nav .list {
+.nav .nav-list {
     float: right !important;
 }
 
-.nav .list ul {
+.nav .nav-list ul {
     margin:0;
     padding:0;
     list-style: none;
 }
 
-.nav .list ul li {
+.nav .nav-list ul li {
     display: inline-block;
     margin-left: 40px;
     padding-top: 27px;
     position: relative;
 }
 
-.nav .list ul li a {
+.nav .nav-list ul li a {
     color: #f2f6f7;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 14px;
 }
 
-.nav .list li:hover {
+.nav .nav-list li:hover {
     color: #9da0a1;
 }
 
-.nav .list li::before {
+.nav .nav-list li::before {
     content:"";
     display: block;
     height: 5px;
@@ -362,7 +353,7 @@ body {
     transition: all ease-in-out 200ms; 
 }
 
-.nav .list li:hover::before {
+.nav .nav-list li:hover::before {
     width: 100%;
     
 }
@@ -505,7 +496,7 @@ body {
     text-align: justify;
 }
 
-.Home .langpick select{
+/* .Home .langpick select{
     background-color: transparent;
     border: none;
     font-size: 18px;
@@ -540,7 +531,7 @@ body {
 
 .Home .langpick select option {
     background-color: #1b262c;
-}
+} */
 
 /* Lang Page Styling */
 
@@ -817,4 +808,152 @@ body {
 .List input[type="submit"]:active {
     cursor: pointer;
     background: #FF385C;
+}
+
+/* Styling for Find Page */
+
+.Find .main {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding-bottom: 60px;
+
+}
+.Find .header {
+    background-color: #FF385C;
+    color: white;
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+    padding: 75px;
+}
+
+.Find .header h1 {
+
+    font-size: 36px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    /*text-transform: capitalize;*/
+}
+
+.Find .footer {
+    text-align: left;
+    padding: 20px;
+    clear: both;
+    color: black;
+    font-style: inherit;
+    padding-left: 150px;
+    padding-right: 150px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top-width: 1px;
+    border-top-color: #e3e1e1;
+    border-top-style: solid;
+}
+
+.Find .content, .Find .header {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+
+.Find .filter {
+    background: #F7F7F7;
+    border-bottom: 3px #e3e1e1 solid;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 20px;
+    position: sticky;
+    top: 76.36px;
+    margin-bottom: 80px;
+    /*padding-bottom: 20px;*/
+}
+
+
+.Find .filter input[type="text"] {
+    display: block;
+    width: 450px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #bababa;
+}
+
+.Find .filter tr {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.Find .filter select{
+    margin-right: 70px;
+    background: #FFF;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 18px;
+    font-family: 'Tajawal', sans-serif;
+    color: #000;
+    text-align: left;
+    text-align-last: left;
+    padding-left: 4px;
+    height: 35px;
+    border-color: #bababa;
+    width: 200px;
+}
+
+.Find .filter table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Find .filter input[type="submit"] {
+    /*margin-left: 711.5px;*/
+    /*margin-right: 711.5px;*/
+    display: block;
+    border: none;
+    margin: 0 auto;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    background: #FF385C;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 180px;
+}
+
+.Find .filter input[type="submit"]:hover {
+    cursor: pointer;
+    background: #f55f7b;
+}
+
+.Find .filter input[type="submit"]:active {
+    cursor: pointer;
+    background: #FF385C;
+}
+.Find .results .item {
+    background: #e5e5e5;
+    padding: 20px 20px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    
+}
+
+.Find .results .item:hover {
+    background: #bababa;
+}
+
+.Find .results .item:active {
+    background: #e5e5e5;
+}
+.Find .results a {
+    text-decoration: none;
+    color: #000;
+}
+
+.Find .results .item-description {
+    margin-right: 15px;
 }

@@ -4,3 +4,4 @@
 
 3. required fields
 
+4. homepage - site summary

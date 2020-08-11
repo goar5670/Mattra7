@@ -27,7 +27,7 @@ class NavBar extends Component
                 <Link to = "/HomePage">
                     <img src="https://i.ibb.co/NLLVycn/logo2.png" alt="logo" className="logo"/>
                 </Link>
-                <div className = "list">
+                <div className = "nav-list">
                     <ul>
                         <li> 
                             <div className= "langpick"> 
