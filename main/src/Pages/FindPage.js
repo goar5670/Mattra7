@@ -3,6 +3,7 @@ import NavBar from "./Components/NavBar"
 import axios from "axios"
 import Item from "./Components/Item"
 import PhotoInput from "./Components/PhotoInput"
+import Loading from "./Components/Loading"
 const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
 
 function FindPage()
@@ -14,7 +15,9 @@ function FindPage()
     const temp4 = "> 3000"
     const temp5 = "> 5"
 
+    const [loading, setLoading] = useState(true)
     const [items, setItems] = useState([]);
+    const [overflow, setOverflow] = useState(false)
 
     // const data = [
     //     {title:"Sample title", description: "Sample description", governorate: "gov",
@@ -27,7 +30,11 @@ function FindPage()
     //     return <Item item={cur}/>
     // })
     const fetchItems = async () => {
-        const {status, data} = await axios.get(endpoint + "/todos");
+        const {status, data} = await axios.get(endpoint + "/todos").then(
+            setTimeout(() => {
+                setLoading(false)
+            }, 1500)
+        );
         if(status === 200)
         setItems(data)
         console.log(status, data)
@@ -117,11 +124,15 @@ function FindPage()
                 </div>
                 <div class="content">
                     <div class="results">
-                        {items.map((cur) => {
-                            return <Item 
-                                item={cur.item} id={cur._id}
-                            />
-                        })}
+                        {loading===true? 
+                            <div> <Loading /> </div>:
+                            items.map((cur) => {
+                                return <Item 
+                                    item={cur.item} id={cur._id}
+                                />
+                            })
+                        }
+                        
                     </div>
                 </div>
                 <div class="footer">

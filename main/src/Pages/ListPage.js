@@ -151,11 +151,11 @@ class ListPage extends Component
                                     <tr id="popover-photo">
                                         <td>
                                             <div className="photos">
-                                                <PhotoInput  id = "0" source={this.state.pictures[0]} c="first-photo"/>
-                                                <PhotoInput  id = "1" source={this.state.pictures[1]}/>
-                                                <PhotoInput  id = "2" source={this.state.pictures[2]}/>
-                                                <PhotoInput  id = "3" source={this.state.pictures[3]}/>
-                                                <PhotoInput  id = "4" source={this.state.pictures[4]} c="last-photo"/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "0" source={this.state.pictures[0]} c="first-photo"/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "1" source={this.state.pictures[1]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "2" source={this.state.pictures[2]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "3" source={this.state.pictures[3]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "4" source={this.state.pictures[4]} c="last-photo"/>
                                             </div>
                                         </td>
                                         <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">
