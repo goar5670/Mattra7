@@ -1,14 +1,14 @@
 import React, { Component } from "react"
 import {BrowserRouter as Router, Route} from "react-router-dom"
 
-
-import HomePage from "./Pages/HomePage"
+import SignupPage from "./Pages/SignupPage"
 import LoginPage from "./Pages/LoginPage"
 import LangPage from "./Pages/LangPage"
-import SignupPage from "./Pages/SignupPage"
+import HomePage from "./Pages/HomePage"
 import HelpPage from "./Pages/HelpPage"
 import ListPage from "./Pages/ListPage"
 import FindPage from "./Pages/FindPage"
+import AdPage from "./Pages/AdPage"
 
 window.$lang = "english"
 
@@ -21,7 +21,6 @@ class App extends Component
             flag: "lang",
             language: ""
         }
-        // this.handleChange = this.handleChange.bind(this)
     }
     // handleChange(event)
     // {
@@ -49,12 +48,13 @@ class App extends Component
                 <Router>
                     <div>
                         <Route exact path="/" component={LangPage} />
-                        <Route exact path="/HomePage" component={HomePage} language={this.state.language} />
+                        <Route exact path="/HomePage" component={HomePage} />
                         <Route exact path="/LoginPage" component={LoginPage} />
                         <Route exact path="/SignupPage" component={SignupPage} />
                         <Route exact path="/HelpPage" component={HelpPage} />
                         <Route exact path="/ListPage" component={ListPage} />
                         <Route exact path="/FindPage" component={FindPage} />
+                        <Route exact path="/Ad/:itemId" component={AdPage} />
                     </div>
                 </Router>
             </div>

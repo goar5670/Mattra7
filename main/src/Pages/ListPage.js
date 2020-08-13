@@ -7,7 +7,7 @@ import axios from "axios"
 import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
 
-const endpoint = "https://jsonbox.io/box_0bb53cd4d9fe6af89921";
+const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
 const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
 
 class ListPage extends Component
@@ -15,6 +15,7 @@ class ListPage extends Component
     constructor(props) {
         super(props);
         this.state = { 
+            // id: "",
             title: "",
             description: "",
             pictures: [
@@ -30,7 +31,6 @@ class ListPage extends Component
             size: "",
             price: "",
             university: ""
-
         }
         this.handleUpload = this.handleUpload.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -78,7 +78,8 @@ class ListPage extends Component
 
     async handleSubmit(event) {
         event.preventDefault()
-        // const res = await axios.post(endpoint + "/todos", {item:this.state})
+        this.state.id= Date.now()
+        const res = await axios.post(endpoint + "/todos", {item:this.state})
         console.log(this.state)
     }
 
@@ -150,11 +151,11 @@ class ListPage extends Component
                                     <tr id="popover-photo">
                                         <td>
                                             <div className="photos">
-                                                <PhotoInput handleChange = {this.handleUpload} id = "0" source={this.state.pictures[0]} c="first-photo"/>
-                                                <PhotoInput handleChange = {this.handleUpload} id = "1" source={this.state.pictures[1]}/>
-                                                <PhotoInput handleChange = {this.handleUpload} id = "2" source={this.state.pictures[2]}/>
-                                                <PhotoInput handleChange = {this.handleUpload} id = "3" source={this.state.pictures[3]}/>
-                                                <PhotoInput handleChange = {this.handleUpload} id = "4" source={this.state.pictures[4]} c="last-photo"/>
+                                                <PhotoInput  id = "0" source={this.state.pictures[0]} c="first-photo"/>
+                                                <PhotoInput  id = "1" source={this.state.pictures[1]}/>
+                                                <PhotoInput  id = "2" source={this.state.pictures[2]}/>
+                                                <PhotoInput  id = "3" source={this.state.pictures[3]}/>
+                                                <PhotoInput  id = "4" source={this.state.pictures[4]} c="last-photo"/>
                                             </div>
                                         </td>
                                         <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">

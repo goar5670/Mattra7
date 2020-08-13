@@ -4,7 +4,7 @@ function Item(props)
 {
 
     return (
-        <Link>
+        <Link to={`/Ad/${props.id}`}>
             <div className="item">
                 <h3 className="item-title"> {props.item.title} </h3>
                 <p className="item-description">{props.item.description} </p>

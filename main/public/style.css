@@ -183,13 +183,11 @@ body {
     float: left;
     width: 89px;
     height: 80px;
-    /* line-height: 76px; */
     background-color: #cbd2d7;
     border: 1px dashed #aaa;
     border-radius: 3px;
     justify-content: center;
     display: flex;
-    /* text-align: center; */
     align-items: center;
 }
 
@@ -224,7 +222,6 @@ body {
 .rect {
     background-color: #FFF;
     width: 500px;
-    /*height: 350px;*/
     margin: auto;
     border-radius: 15px;
     padding-top: 15px;
@@ -437,54 +434,6 @@ body {
 }
 
 
-/* .Home .nav {
-    background: #1b262c;
-    position: sticky;
-    top: 0;
-    padding-left: 150px;
-    padding-right: 150px;
-}
-
-.Home .nav::after {
-    content: '';
-    display: table;
-    clear: both;
-}
-
-.Home .logo {
-    float: left;
-    padding: 0px;
-    width: 90px;
-    height: 76.37px;
-    
-}
-
-.Home .list {
-    float: right;
-}
-
-.Home .list ul {
-    margin:0;
-    padding:0;
-    list-style: none;
-}
-
-.Home .list ul li {
-    display: inline-block;
-    margin-left: 40px;
-    padding-top: 27px;
-    position: relative;
-}
-
-.Home .list ul li a {
-    color: #f2f6f7;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-} */
-
-
-
 .Home .content, .Home .header {
     padding-left: 150px;
     padding-right: 150px;
@@ -495,43 +444,6 @@ body {
     padding-bottom: 30px;
     text-align: justify;
 }
-
-/* .Home .langpick select{
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    outline: none;
-    font-family: 'Tajawal', sans-serif;
-    width: 100px;
-    color: #FFF;
-    text-align: center;
-    text-align-last: center;
-    }
-
-
-.Home .list li:hover {
-    color: #9da0a1;
-}
-
-.Home .list li::before {
-    content:"";
-    display: block;
-    height: 5px;
-    width: 0%;
-    background-color: #f2f6f7;
-    top: 5px;
-    position: absolute;
-    transition: all ease-in-out 200ms; 
-}
-
-.Home .list li:hover::before {
-    width: 100%;
-    
-}
-
-.Home .langpick select option {
-    background-color: #1b262c;
-} */
 
 /* Lang Page Styling */
 
@@ -866,7 +778,6 @@ body {
     position: sticky;
     top: 76.36px;
     margin-bottom: 80px;
-    /*padding-bottom: 20px;*/
 }
 
 
@@ -909,8 +820,6 @@ body {
 }
 
 .Find .filter input[type="submit"] {
-    /*margin-left: 711.5px;*/
-    /*margin-right: 711.5px;*/
     display: block;
     border: none;
     margin: 0 auto;

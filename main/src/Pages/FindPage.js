@@ -3,7 +3,7 @@ import NavBar from "./Components/NavBar"
 import axios from "axios"
 import Item from "./Components/Item"
 import PhotoInput from "./Components/PhotoInput"
-const endpoint = "https://jsonbox.io/box_0bb53cd4d9fe6af89921";
+const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
 
 function FindPage()
 {
@@ -14,18 +14,28 @@ function FindPage()
     const temp4 = "> 3000"
     const temp5 = "> 5"
 
+    const [items, setItems] = useState([]);
 
-    const data = [
-        {title:"Sample title", description: "Sample description", governorate: "gov",
-         rooms: "4", size: "250-300", price: "2500-3000", university: "AUC"},
-        {title:"First item but not really first", description: "Just a dummy desc to see what's working"},
-        {title:"Actually third item", description : "apartment with 3 rooms nearby GUC for students"}
-    ]
+    // const data = [
+    //     {title:"Sample title", description: "Sample description", governorate: "gov",
+    //      rooms: "4", size: "250-300", price: "2500-3000", university: "AUC"},
+    //     {title:"First item but not really first", description: "Just a dummy desc to see what's working"},
+    //     {title:"Actually third item", description : "apartment with 3 rooms nearby GUC for students"}
+    // ]
 
-    const results = data.map((cur) => {
-        return <Item item={cur}/>
-    })
-
+    // const results = data.map((cur) => {
+    //     return <Item item={cur}/>
+    // })
+    const fetchItems = async () => {
+        const {status, data} = await axios.get(endpoint + "/todos");
+        if(status === 200)
+        setItems(data)
+        console.log(status, data)
+    }
+    useEffect(() => {
+        fetchItems();
+    }, [])
+    
     return (
         <div class="Find">
             <div class="main">
@@ -107,7 +117,11 @@ function FindPage()
                 </div>
                 <div class="content">
                     <div class="results">
-                        {results}
+                        {items.map((cur) => {
+                            return <Item 
+                                item={cur.item} id={cur._id}
+                            />
+                        })}
                     </div>
                 </div>
                 <div class="footer">
