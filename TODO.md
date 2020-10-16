@@ -1,16 +1,20 @@
-1. validation in login and signup
+- validation in login and signup
 
-2. checkboxes/radios in login and signup
+- checkboxes/radios in login and signup
 
-3. required fields
+- required fields, word limit in list a page
 
-4. homepage - site summary
+- homepage - site summary
 
-5. page for every listed item
+- page for every listed place
 
-6. incorporate firebase for items
+- 2 types of profile mo2gr, most2gr
 
-7. incorporate firebase for users and authentication
+- lel mo2gr hyb2a feh list bkol l places ely 3mlha list
 
+- mmkn yedit ay info l ay place + delete
 
+- backend 
+
+- design for place card
  

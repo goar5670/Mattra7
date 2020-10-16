@@ -17,7 +17,6 @@ function FindPage()
 
     const [loading, setLoading] = useState(true)
     const [items, setItems] = useState([]);
-    const [overflow, setOverflow] = useState(false)
 
     // const data = [
     //     {title:"Sample title", description: "Sample description", governorate: "gov",
@@ -33,7 +32,7 @@ function FindPage()
         const {status, data} = await axios.get(endpoint + "/todos").then(
             setTimeout(() => {
                 setLoading(false)
-            }, 1500)
+            }, 1000)
         );
         if(status === 200)
         setItems(data)
