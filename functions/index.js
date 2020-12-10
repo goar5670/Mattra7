@@ -18,8 +18,10 @@ const {
 } = require('./handlers/places');
 
 const FBAuth = require('./util/fbAuth')
+const cors = require('cors')
 
 
+app.use(cors());
 
 // User routes
 app.post('/signup', signup);

@@ -43,6 +43,7 @@ exports.getPlaces = (req, res) => {
 }
 
 exports.getAllPlaces = (req, res) => {
+    // res.header("Access-Control-Allow-Origin", "*");    
     db.collection('places')
     .orderBy('createdAt', 'desc')
     .get()
