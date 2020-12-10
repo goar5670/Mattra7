@@ -7,7 +7,7 @@ import axios from "axios"
 import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
 
-const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
+const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
 const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
 
 class ListPage extends Component
@@ -79,7 +79,7 @@ class ListPage extends Component
     async handleSubmit(event) {
         event.preventDefault()
         this.state.id= Date.now()
-        const res = await axios.post(endpoint + "/todos", {item:this.state})
+        const res = await axios.post(endpoint + "/places", {this.state})
         console.log(this.state)
     }
 

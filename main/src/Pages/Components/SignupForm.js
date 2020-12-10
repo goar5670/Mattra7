@@ -1,5 +1,7 @@
 import React, { Component } from "react"
+import axios from "axios"
 import TextField from "@material-ui/core/TextField"
+const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
 
 class SingupForm extends Component
 {
@@ -7,12 +9,11 @@ class SingupForm extends Component
     {
         super(props)
         this.state = {
-            firstname: "",
-            lastname: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
-            confirm: "",
-            gender: ""
+            confirmPassword: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,9 +37,10 @@ class SingupForm extends Component
             )
         }
     }
-    handleSubmit(event)
+    async handleSubmit(event)
     {
-        event.preventDefault()
+        event.preventDefault();
+        const res = await axios.post(endpoint + "/signup", this.state)
         console.log(this.state);
     }
     
@@ -55,7 +57,7 @@ class SingupForm extends Component
                         type = "text"
                         variant = "filled"
                         color = "secondary"
-                        name = "firstname"
+                        name = "firstName"
                         onChange = {this.handleChange}
                     />
                     <TextField className="LastName"
@@ -64,7 +66,7 @@ class SingupForm extends Component
                         type = "text"
                         variant = "filled"
                         color = "secondary" 
-                        name = "lastname"
+                        name = "lastName"
                         onChange = {this.handleChange}   
                     />
                     <br />
@@ -95,7 +97,7 @@ class SingupForm extends Component
                         type = "password"
                         variant = "filled"
                         color = "secondary"    
-                        name = "confirm"
+                        name = "confirmPassword"
                         onChange = {this.handleChange}   
                     />
                     <br />

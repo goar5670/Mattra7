@@ -1,5 +1,8 @@
 import React, { Component } from "react"
+import axios from "axios"
 import TextField from "@material-ui/core/TextField"
+const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
+
 // import {Popover, Button} from "@blueprintjs/core"
 class LoginForm extends Component
 {
@@ -33,8 +36,9 @@ class LoginForm extends Component
             )
         }
     }
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault()
+        const res = await axios.post(endpoint + "/login", this.state)
         console.log(this.state)
     }
     render()

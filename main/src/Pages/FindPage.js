@@ -4,8 +4,7 @@ import axios from "axios"
 import Item from "./Components/Item"
 import PhotoInput from "./Components/PhotoInput"
 import Loading from "./Components/Loading"
-const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
-
+const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
 function FindPage()
 {
 
@@ -29,14 +28,13 @@ function FindPage()
     //     return <Item item={cur}/>
     // })
     const fetchItems = async () => {
-        const {status, data} = await axios.get(endpoint + "/todos").then(
+        const {status, data} = await axios.get(endpoint + "/places").then(
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
         );
-        if(status === 200)
-        setItems(data)
-        console.log(status, data)
+        if(status === 200) setItems(data.places)
+        console.log(status, items, data.places)
     }
     useEffect(() => {
         fetchItems();
@@ -125,9 +123,9 @@ function FindPage()
                     <div class="results">
                         {loading===true? 
                             <div> <Loading /> </div>:
-                            items.map((cur) => {
+                            items.map((cur, i) => {
                                 return <Item 
-                                    item={cur.item} id={cur._id}
+                                    item={cur} id={i}
                                 />
                             })
                         }
