@@ -917,3 +917,25 @@ body {
 .Find .results .item-description {
     margin-right: 15px;
 }
+
+/*  Styling for Ad Page */
+
+.Ad .item {
+    background: #e5e5e5;
+    padding: 20px 20px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    
+}
+
+.Ad .item:hover {
+    background: #bababa;
+}
+
+.Ad .item:active {
+    background: #e5e5e5;
+}
+
+.Ad .item-description {
+    margin-right: 15px;
+}

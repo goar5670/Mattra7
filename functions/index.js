@@ -11,7 +11,7 @@ const {
 
 const {
     listPlace,
-    getAllPlaces,
+    getFilteredPlaces,
     deletePlace,
     getOnePlace,
     updatePlace
@@ -31,7 +31,7 @@ app.post('/user', FBAuth, updateUserInfo)
 
 //Place routes
 app.post('/places', FBAuth, listPlace);
-app.get('/places', getAllPlaces);
+app.get('/places', getFilteredPlaces);
 app.delete('/places/:placeId', FBAuth, deletePlace);
 app.get('/places/:placeId', getOnePlace);
 app.post('/places/:placeId', FBAuth, updatePlace);

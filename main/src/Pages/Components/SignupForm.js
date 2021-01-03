@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import axios from "axios"
+import {Redirect} from "react-router-dom"
 import TextField from "@material-ui/core/TextField"
-const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
+// import {endpoint} from "./Vars"
+import { useForkRef } from "@material-ui/core"
 
 class SingupForm extends Component
 {
@@ -14,6 +16,7 @@ class SingupForm extends Component
             email: "",
             password: "",
             confirmPassword: "",
+            redirect: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,12 +43,20 @@ class SingupForm extends Component
     async handleSubmit(event)
     {
         event.preventDefault();
-        const res = await axios.post(endpoint + "/signup", this.state)
-        console.log(this.state);
+        const res = await axios.post(window.endpoint + "/signup", this.state)
+        if(res.status === 201)
+        {
+            this.setState({redirect: "something"})        
+            console.log(res.status);
+        }
+        else return res.status;
     }
     
     render()
     {
+        if(this.state.redirect)
+            return <Redirect to="./Signup/Redirect"/>
+    
         return (
             <div class="rect">
                 <form onSubmit = {this.handleSubmit}>

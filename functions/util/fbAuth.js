@@ -2,7 +2,6 @@ const { admin, db } = require('./admin')
 
 module.exports = (req, res, next) => {
     let userToken;
-    
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         userToken = req.headers.authorization.split('Bearer ')[1];
     }

@@ -1,23 +1,23 @@
 import React, { Component, useState, useEffect } from "react"
 import axios from "axios"
 import Item from "./Components/Item"
-const endpoint = "https://jsonbox.io/box_7da96f8e3be60f9bb113";
+// import {endpoint} from "./Components/Vars"
 
 function AdPage(props) {
 
     const [Ad, setAd] = useState({})
 
     const fetchAd = async (itemId) => {
-        // const {match: {params}} = props;
-        const {data, status} = await axios.get(endpoint + `/todos/${itemId}`);
-        setAd(data.item)
+        const {data, status} = await axios.get(window.endpoint + `/places/${itemId}`);
+        if(status == 200) setAd(data);
     }
 
     useEffect(() => {
+        console.log(props.match.params.itemId);
         fetchAd(props.match.params.itemId);
     }, [])
     return (
-        <div>
+        <div className="Ad">
             <Item item={Ad} />
         </div>
     )

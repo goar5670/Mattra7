@@ -11,7 +11,6 @@ const {
 } = require('../util/validators')
 
 exports.signup = (req, res) => {
-    console.log(res.headers);
     const newUser = req.body;
     const { valid, errors } = validateSignupData(newUser);
     if(!valid) return res.status(400).json(errors)
@@ -60,7 +59,7 @@ exports.login = (req, res) => {
     }) .catch(e => {
         console.error(e);
         if(e.code === 'auth/wrong-password') {
-            return res.status(403).json({genera: "Wrong credentials"});
+            return res.status(403).json({general: "Wrong credentials"});
         }
         return res.status(500).json({error: e.code});
     })

@@ -2,9 +2,8 @@ import React from "react"
 import {Link} from "react-router-dom"
 function Item(props)
 {
-
     return (
-        <Link to={`/Ad/${props.id}`}>
+        <Link to={`/Ad/${props.item.id}`}>
             <div className="item">
                 <h3 className="item-title"> {props.item.title} </h3>
                 <p className="item-description">{props.item.description} </p>

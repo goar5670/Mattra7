@@ -1,19 +1,19 @@
 import React, { Component } from "react"
-
 import {UncontrolledPopover, PopoverBody, PopoverHeader} from "reactstrap"
-// import "bootstrap/dist/css/bootstrap.css"
 import axios from "axios"
-
 import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
+import {Redirect} from "react-router-dom"
 
-const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
+// import {endpoint} from "./Components/Vars"
+
+
 const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
 
 class ListPage extends Component
 {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = { 
             // id: "",
             title: "",
@@ -30,7 +30,8 @@ class ListPage extends Component
             rooms: "",
             size: "",
             price: "",
-            university: ""
+            university: "",
+            redirect: null,
         }
         this.handleUpload = this.handleUpload.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -48,7 +49,7 @@ class ListPage extends Component
 
     handleUpload(id, event) {
         var size = event.target.files[0].size/1024;
-        if(size >= 5*1024)
+        if(size > 5*1024)
         {
             alert("File is too big. The limit is 5MB");
         }
@@ -77,10 +78,22 @@ class ListPage extends Component
     }
 
     async handleSubmit(event) {
-        event.preventDefault()
-        this.state.id= Date.now()
-        const res = await axios.post(endpoint + "/places", {this.state})
-        console.log(this.state)
+        if(window.token === "-1") alert("You must be logged in to list a place.");
+        else
+        {
+            const headers = {
+                Authorization: "Bearer " + window.token
+            }
+            console.log(headers);
+            event.preventDefault()
+            const res = await axios.post(window.endpoint + "/places", {...this.state}, {headers: headers})
+            if(res.status == 200) 
+            {
+                this.state.redirect = 1;
+                this.props.history.push('./FindPage')
+            }
+            console.log(this.state)
+        }
     }
 
     render()
@@ -95,8 +108,10 @@ class ListPage extends Component
             if(id == 0) return <option disabled selected> {item} </option>
             else return <option> {item} </option>
         }) 
+        const {redirect} = this.state
+        if(redirect) return <Redirect to="./FindPage" />
         return (
-
+            redirect? <Redirect to="./FindPage" />:
             <div className="List">
                 <div className="main">
                     <NavBar />
@@ -241,7 +256,7 @@ class ListPage extends Component
                                     <tr>
                                         <td>
                                             <select id="popover-price" className="price" name = "price" onChange = {this.handleChange}>
-                                                <option value={temp3}>{temp3} </option>
+                                                <option value={temp3}> {temp3} </option>
                                                 <option value="1000 - 1500">1000 - 1500</option>
                                                 <option value="1500 - 2000">1500 - 2000</option>
                                                 <option value="2000 - 2500">2000 - 2500</option>

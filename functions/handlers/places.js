@@ -11,6 +11,7 @@ exports.listPlace = (req, res) => {
         rooms: req.body.rooms,
         price: req.body.price,
         university: req.body.university,
+        size: req.body.size,
         createdAt: new Date().toISOString()
     }
 
@@ -24,38 +25,58 @@ exports.listPlace = (req, res) => {
         res.status(500).json({error: e.code});
     })
 }
+// TODO
+// exports.getUserPlaces = (req, res) => {
+//     db.collection('places')
+//     .where('owner', '==', req.params.userId)
+//     .orderBy('createdAt', 'desc')
+//     .get()
+//     .then(data => {
+//         let places = []
+//         data.forEach(doc => {
+//             places.push(doc.data());
+//         })
+//         return res.status(200).json({places});
+//     }) .catch(e => {
+//         console.error(e);
+//         return res.status(500).json({error: e.code()});
+//     })
+// }
 
-exports.getPlaces = (req, res) => {
+exports.getFilteredPlaces = (req, res) => {
+    const mep = {
+        governorate: "==",
+        rooms: "==",
+        size: "==",
+        price: "==",
+        university: "==",
+    }
+    if(req.query.governorate == "0") mep.governorate = '!=';
+    if(req.query.rooms == "0") mep.rooms = "!=";
+    if(req.query.size == "0") mep.size = "!=";
+    if(req.query.price == "0") mep.price = "!=";
+    if(req.query.university == "0") mep.university = "!=";
+    console.log(mep.governorate);
     db.collection('places')
-    .where('owner', '==', req.params.userId)
-    .orderBy('createdAt', 'desc')
-    .get()
-    .then(data => {
-        let places = []
-        data.forEach(doc => {
-            places.push(doc.data());
-        })
-        return res.status(200).json({places});
-    }) .catch(e => {
-        console.error(e);
-        return res.status(500).json({error: e.code()});
-    })
-}
-
-exports.getAllPlaces = (req, res) => {
-    // res.header("Access-Control-Allow-Origin", "*");    
-    db.collection('places')
+    .where('governorate', mep.governorate, req.query.governorate)
+    .where('rooms', mep.rooms, req.query.rooms)
+    .where('size', mep.size, req.query.size)
+    .where('price', mep.price, req.query.price)
+    .where('university', mep.university, req.query.university)
     .orderBy('createdAt', 'desc')
     .get()
     .then(data => {
         let places = [];
         data.forEach(doc => {
-            places.push(doc.data());
-        })
+            places.push({
+                ...doc.data(),
+                id: doc.id
+            });
+        });
         return res.status(200).json({places});
-    }) .catch(e => {
+    }).catch(e => {
         console.error(e);
-        return res.status(500);
+        return res.status(500).json({error: e.code()});
     })
 }
 

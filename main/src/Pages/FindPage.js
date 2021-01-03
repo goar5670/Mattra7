@@ -2,9 +2,9 @@ import React, { Component, useState, useEffect} from "react"
 import NavBar from "./Components/NavBar"
 import axios from "axios"
 import Item from "./Components/Item"
-import PhotoInput from "./Components/PhotoInput"
 import Loading from "./Components/Loading"
-const endpoint = "http://localhost:5000/mattra7-c689b/europe-west/api";
+// import {endpoint} from "./Components/Vars"
+
 function FindPage()
 {
 
@@ -16,30 +16,44 @@ function FindPage()
 
     const [loading, setLoading] = useState(true)
     const [items, setItems] = useState([]);
+    const [filter, setFilter] = useState({
+        governorate: "0",
+            rooms: "0",
+            size: "0",
+            price: "0",
+            university: "0",
+    });
 
-    // const data = [
-    //     {title:"Sample title", description: "Sample description", governorate: "gov",
-    //      rooms: "4", size: "250-300", price: "2500-3000", university: "AUC"},
-    //     {title:"First item but not really first", description: "Just a dummy desc to see what's working"},
-    //     {title:"Actually third item", description : "apartment with 3 rooms nearby GUC for students"}
-    // ]
 
-    // const results = data.map((cur) => {
-    //     return <Item item={cur}/>
-    // })
     const fetchItems = async () => {
-        const {status, data} = await axios.get(endpoint + "/places").then(
+        return axios.get(window.endpoint + "/places", {params: filter}).then((res) => {
             setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        );
-        if(status === 200) setItems(data.places)
-        console.log(status, items, data.places)
+                if(res.status === 200)
+                { 
+                    setItems(res.data.places)                
+                    console.log(res.data.places)
+                    setLoading(false)
+                }
+                else console.log(res.status);
+            })
+        });
     }
     useEffect(() => {
         fetchItems();
     }, [])
     
+    const handleChange = (event) => {
+        setFilter(
+            {
+                [event.target.name]: event.target.value
+            }
+        )
+    }
+
+    const handleSubmit = (event) => {
+        fetchItems();
+    }
+
     return (
         <div class="Find">
             <div class="main">
@@ -52,58 +66,58 @@ function FindPage()
                         <table>
                             <tr>
                                 <td>
-                                    <select>
-                                            <option value="" disabled selected>Governorate</option>
-                                            <option>Giza</option>
-                                            <option>Cairo</option>
-                                            <option>Alexandria</option>
-                                        </select>
-                                </td>
-                                <td>
-                                    <select>
-                                            <option value="" disabled selected>Number of rooms</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>{temp5}</option>
+                                    <select name="governorate" onChange = {handleChange}>
+                                        <option value="0" disabled selected>Governorate</option>
+                                        <option value="Giza">Giza</option>
+                                        <option value="Cairo">Cairo</option>
+                                        <option value="Alexandria">Alexandria</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select>
-                                            <option value="" disabled selected>Unit size</option>
-                                            <option>{temp1}</option>
-                                            <option>75 - 100</option>
-                                            <option>100 - 150</option>
-                                            <option>150 - 200</option>
-                                            <option>200 - 250</option>
-                                            <option>{temp2}</option>
-                                        </select>
+                                    <select name="rooms" onChange = {handleChange}>
+                                        <option value="0" disabled selected>Number of rooms</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value={temp5}>{temp5}</option>
+                                    </select>
                                 </td>
                                 <td>
-                                    <select>
-                                            <option value="" disabled selected>Rent fee</option>
-                                            <option>{temp3}</option>
-                                            <option> 1000 - 1500</option>
-                                            <option> 1500 - 2000</option>
-                                            <option> 2000 - 2500</option>
-                                            <option> 2500 - 3000</option>
-                                            <option>{temp4}</option>
-                                        </select>
+                                    <select name="size" onChange = {handleChange}>
+                                        <option value="0" disabled selected>Unit size</option>
+                                        <option value={temp1}> {temp1} </option>
+                                        <option value="75 - 100">75 - 100</option>
+                                        <option value="100 - 150">100 - 150</option>
+                                        <option value="150 - 200">150 - 200</option>
+                                        <option value="200 - 250">200 - 250</option>
+                                        <option value={temp2}> {temp2}</option>
+                                    </select>
                                 </td>
                                 <td>
-                                    <select>
-                                            <option value="" disabled selected>Nearby university</option>
-                                            <option>AUC</option>
-                                            <option>BUE</option>
-                                            <option>GUC</option>
-                                            <option>MUST</option>
-                                            <option>MSA</option>
-                                            <option>AAST</option>
-                                            <option>Other</option>
-                                            <option>Non-applicable</option>
-                                        </select>
+                                    <select name="price" onChange = {handleChange}>
+                                        <option value="0" disabled selected>Rent fee</option>
+                                        <option value={temp3}> {temp3} </option>
+                                        <option value="1000 - 1500">1000 - 1500</option>
+                                        <option value="1500 - 2000">1500 - 2000</option>
+                                        <option value="2000 - 2500">2000 - 2500</option>
+                                        <option value="2500 - 3000">2500 - 3000</option>
+                                        <option value={temp4}> {temp4} </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="university" onChange = {handleChange}>
+                                        <option value="0" disabled selected>Nearby university</option>
+                                        <option value="AUC">AUC</option>
+                                        <option value="BUE">BUE</option>
+                                        <option value="GUC">GUC</option>
+                                        <option value="MUST">MUST</option>
+                                        <option value="MSA">MSA</option>
+                                        <option value="AAST">AAST</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Non-applicable">Non-applicable</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -113,19 +127,19 @@ function FindPage()
                             </tr>
                             <tr>
                                 <td>
-                                    <input type = "submit" value = "Go" />
+                                    <input onSubmit={handleSubmit} type="submit" value = "Go" />
                                 </td>
                             </tr>
                         </table>
                     </form>
                 </div>
-                <div class="content">
-                    <div class="results">
+                <div className="content">
+                    <div className="results">
                         {loading===true? 
                             <div> <Loading /> </div>:
                             items.map((cur, i) => {
                                 return <Item 
-                                    item={cur} id={i}
+                                    item={cur} key={i}
                                 />
                             })
                         }
