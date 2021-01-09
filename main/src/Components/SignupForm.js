@@ -43,7 +43,7 @@ class SingupForm extends Component
     async handleSubmit(event)
     {
         event.preventDefault();
-        const res = await axios.post(window.endpoint + "/signup", this.state)
+        const res = await axios.post("/signup", this.state)
         if(res.status === 201)
         {
             this.setState({redirect: "something"})        

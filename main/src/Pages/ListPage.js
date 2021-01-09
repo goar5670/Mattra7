@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import {UncontrolledPopover, PopoverBody, PopoverHeader} from "reactstrap"
 import axios from "axios"
-import NavBar from "./Components/NavBar.js"
 import PhotoInput from "./Components/PhotoInput.js"
 import {Redirect} from "react-router-dom"
 
@@ -86,7 +85,7 @@ class ListPage extends Component
             }
             console.log(headers);
             event.preventDefault()
-            const res = await axios.post(window.endpoint + "/places", {...this.state}, {headers: headers})
+            const res = await axios.post("/places", {...this.state}, {headers: headers})
             if(res.status == 200) 
             {
                 this.state.redirect = 1;
@@ -114,7 +113,6 @@ class ListPage extends Component
             redirect? <Redirect to="./FindPage" />:
             <div className="List">
                 <div className="main">
-                    <NavBar />
                     <div className="header">
                         <h1> Add a property</h1>
                     </div>

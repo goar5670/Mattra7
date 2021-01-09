@@ -38,7 +38,7 @@ class LoginForm extends Component
     }
     async handleSubmit(event) {
         event.preventDefault()
-        // const res = await axios.post(window.endpoint + "/login", this.state)
+        // const res = await axios.post("/login", this.state)
         
         // if(res.status == 200)
         // {

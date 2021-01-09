@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect} from "react"
-import NavBar from "./Components/NavBar"
 import axios from "axios"
 import Item from "./Components/Item"
 import Loading from "./Components/Loading"
@@ -26,7 +25,7 @@ function FindPage()
 
 
     const fetchItems = async () => {
-        return axios.get(window.endpoint + "/places", {params: filter}).then((res) => {
+        return axios.get('/places', {params: filter}).then((res) => {
             setTimeout(() => {
                 if(res.status === 200)
                 { 
@@ -57,7 +56,6 @@ function FindPage()
     return (
         <div class="Find">
             <div class="main">
-                <NavBar />
                 <div class="header">
                     <h1> Find a place</h1>
                 </div>
@@ -135,7 +133,7 @@ function FindPage()
                 </div>
                 <div className="content">
                     <div className="results">
-                        {loading===true? 
+                        {loading? 
                             <div> <Loading /> </div>:
                             items.map((cur, i) => {
                                 return <Item 

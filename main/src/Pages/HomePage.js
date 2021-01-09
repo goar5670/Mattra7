@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-import {Link, Router } from "react-router-dom"
-// import LoginPage from "./LoginPage"
-import NavBar from "./Components/NavBar"
+import {Link, Router} from "react-router-dom"
 
 class HomePage extends Component
 {
@@ -33,7 +31,6 @@ class HomePage extends Component
         return (
             <div className="Home">
                 <div className = "main">
-                    <NavBar />
                     {/* <h1>{window.$lang}</h1> */}
                     <div className="header">
                         <h1> Mattra7  <span className= "arabic"> — مطرح </span> </h1>

@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import NavBar from "./Components/NavBar"
 class HelpPage extends Component
 {
     constructor(props)
@@ -14,9 +13,8 @@ class HelpPage extends Component
     {
         return (
             <div className = "List">
-                <NavBar />
                 <div classaName = "main">
-                    code goes here ...
+                    code goes brrrrrrrrrrrrrr
                 </div>
             </div>
         )
