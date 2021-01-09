@@ -2,10 +2,13 @@ import React, { Component } from "react"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 // Pages
-import * as pages from "./Pages"
+import {
+  Lang, Home, Login, Signup, Help, List,
+  Find, Ad, SignupRedirect, Logout  
+}  from "./Pages"
 
 //Components
-import NavBar from "./Pages/Components/NavBar"
+import NavBar from "./Components/NavBar"
 import Nav from "reactstrap/lib/Nav"
 
 //Glboal Vars
@@ -29,19 +32,19 @@ class App extends Component
             <div>
                 <Router>
                     <Switch>
-                        <Route exact path="/" component={pages.LangPage} />
+                        <Route exact path="/" component={Lang} />
                         <NavBar />
                     </Switch>
                     <Switch>
-                        <Route exact path="/HomePage" component={pages.HomePage} />
-                        <Route exact path="/LoginPage" component={pages.LoginPage} />
-                        <Route exact path="/SignupPage" component={pages.SignupPage} />
-                        <Route exact path="/HelpPage" component={pages.HelpPage} />
-                        <Route exact path="/ListPage" component={pages.ListPage} />
-                        <Route exact path="/FindPage" component={pages.FindPage} />
-                        <Route exact path="/Ad/:itemId" component={pages.AdPage} />
-                        <Route exact path="/Signup/Redirect" component={pages.SignupRedirect} />
-                        <Route exact path="/LogoutPage" component={pages.LogoutPage} />
+                        <Route exact path="/Home" component={Home} />
+                        <Route exact path="/Login" component={Login} />
+                        <Route exact path="/Signup" component={Signup} />
+                        <Route exact path="/Help" component={Help} />
+                        <Route exact path="/List" component={List} />
+                        <Route exact path="/Find" component={Find} />
+                        <Route exact path="/Ad/:itemId" component={Ad} />
+                        <Route exact path="/Signup/Redirect" component={SignupRedirect} />
+                        <Route exact path="/Logout" component={Logout} />
                     </Switch>
                 </Router>
             </div>
