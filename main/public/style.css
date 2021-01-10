@@ -327,8 +327,8 @@ body {
     font-weight: bold;
     border-radius: 8px;
 }
-
-.rect button[type="submit"]:hover {
+/*
+ .rect button[type="submit"]:hover {
     cursor: pointer;
     background: #24496b;
 }
@@ -337,6 +337,7 @@ body {
     cursor: pointer;
     background: #3e78ad;
 }
+*/
 
 .rect img{
     display: block;
@@ -611,14 +612,38 @@ body {
 
 /* Help Page Styling */
 
-.Help {
-
-}
-
 .Help .main {
     display: block;
 }
 
+/*  Profile Page Styling */
+
+.Profile {
+
+}
+
+.Profile .main {
+    min-height: 85.823vh;
+    top: 100px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: block;
+}
+
+.Profile .placesList {
+    margin: 100px 150px 50px 20px;
+    width: 800px;
+    border-radius: 0.3rem;
+    background-color: green;
+}
+
+.Profile .Paper {
+    margin: 100px 150px 50px 20px;
+    border-radius: 0.3rem;
+    background-color: green;
+    width: 400px;
+}
 
 /* List Page Styling */
 

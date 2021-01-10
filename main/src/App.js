@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import axios from 'axios'
+import jwtDecode from 'jwt-decode';
 
 //Redux
 import { Provider } from 'react-redux'
@@ -18,8 +19,7 @@ import List from "./Pages/List"
 import Find from "./Pages/Find"
 import Ad from "./Pages/Ad"
 import Logout from "./Pages/Logout"
-import SignupRedirect from "./Pages/SignupRedirect"
-import jwtDecode from 'jwt-decode';
+import Profile from './Pages/Profile'
 
 //Components
 import NavBar from "./Components/NavBar"
@@ -62,8 +62,8 @@ class App extends Component
                                 <Route exact path="/List" component={List} />
                                 <Route exact path="/Find" component={Find} />
                                 <Route exact path="/Ad/:itemId" component={Ad} />
-                                <Route exact path="/Signup/Redirect" component={SignupRedirect} />
                                 <Route exact path="/Logout" component={Logout} />
+                                <Route exact path='/Profile/:userId' component={Profile} />
                             </Switch>
                         </Router>
                     </Switch>

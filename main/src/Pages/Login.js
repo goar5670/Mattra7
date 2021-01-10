@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 //MUI STUFF
 import TextField from "@material-ui/core/TextField"
 import Typography from "@material-ui/core/Typography"
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Button from '@material-ui/core/Button'
 
 //Redux
 import { loginUser } from "../Redux/actions/userActions"
@@ -18,7 +20,8 @@ class Login extends Component
         this.state = {
             email: "",
             password: "",
-            errors: {}
+            errors: {},
+            loading: false
         }
         
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -33,6 +36,9 @@ class Login extends Component
                 errors: nextProps.UI.errors
             })
         }
+        this.setState({
+            loading: nextProps.UI.loading
+        })
     }
 
     handleChange(event)
@@ -49,6 +55,11 @@ class Login extends Component
         {
             this.setState(
                 {
+                    errors: {
+                        ...this.state.errors,
+                        general: "",
+                        [event.target.name]: "" 
+                    },
                     [event.target.name]: event.target.value
                 }
             )
@@ -64,7 +75,7 @@ class Login extends Component
     }
     render()
     {
-        const {errors} = this.state;
+        const {errors, loading} = this.state;
         return (
             <div className="Login">
                 <div className="main">
@@ -101,9 +112,9 @@ class Login extends Component
                                     {errors.general}
                                 </Typography>
                                 )}
-                                <button type = "submit" disabled = {this.state.loading}>
-                                    Log in
-                                </button>
+                                <Button type = "submit" disabled={loading}>
+                                    {loading? <CircularProgress color="white" /> : "Log in" } 
+                                </Button>
                                 <small> Don't have an account? <Link className="Link" to="/Signup" > SIGN UP </Link> </small>
                             </form>
                         </div>                        
@@ -117,7 +128,7 @@ class Login extends Component
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    UI: PropTypes.object.isRequired
+    UI: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

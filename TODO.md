@@ -1,5 +1,3 @@
-- validation in login and signup
-
 - checkboxes/radios in login and signup
 
 - required fields, word limit in list a page
@@ -13,6 +11,8 @@
 - lel mo2gr hyb2a feh list bkol l places ely 3mlha list
 
 - mmkn yedit ay info l ay place + delete
+
+- profile for every mo2gr
 
 - backend 
 

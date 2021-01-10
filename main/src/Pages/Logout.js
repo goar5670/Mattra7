@@ -1,17 +1,18 @@
 import React, { Component, useState, useEffect} from "react"
 import {Redirect} from "react-router-dom"
 
-function LogoutPage(props)
+//Redux
+import store from '../Redux/store'
+import { logoutUser } from '../Redux/actions/userActions'
+
+class Logout extends Component
 {   
-    const Logout = () => {
-        window.token = "-1"
-        props.history.push("./HomePage");
-    }
-    useEffect(() => {
-        Logout();
-    }, [])
-    return <Redirect to = "./HomePage"/>
+    render()
+    {
+        store.dispatch(logoutUser());
+        return <Redirect to = "./Home"/>
+    }    
 }
 
 
-export default LogoutPage;
+export default Logout;

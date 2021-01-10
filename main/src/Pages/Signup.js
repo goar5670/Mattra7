@@ -8,8 +8,9 @@ import { signupUser } from '../Redux/actions/userActions'
 
 //MUI
 import TextField from "@material-ui/core/TextField"
-import { Typography } from "@material-ui/core"
-
+import Typography  from "@material-ui/core/Typography"
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Button from '@material-ui/core/Button'
 
 class Signup extends Component
 {
@@ -22,7 +23,8 @@ class Signup extends Component
             email: "",
             password: "",
             confirmPassword: "",
-            errors: {}
+            errors: {},
+            loading: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,9 +35,12 @@ class Signup extends Component
         if(nextProps.UI.errors)
         {
             this.setState({
-            errors: nextProps.UI.errors
+                errors: nextProps.UI.errors
             })
         }
+        this.setState({
+            loading: nextProps.UI.loading
+        })
     }
 
     handleChange(event)
@@ -52,10 +57,15 @@ class Signup extends Component
         {
             this.setState(
                 {
+                    errors: {
+                        ...this.state.errors,
+                        general: "",
+                        [event.target.name]: "" 
+                    },
                     [event.target.name]: event.target.value
                 }
             )
-        }
+        }   
     }
     handleSubmit(event)
     {
@@ -72,13 +82,13 @@ class Signup extends Component
 
     render()
     {
-        const {errors} = this.state;
+        const {errors, loading} = this.state;
         return (
             <div className = "Signup">
                 <div className = "main">
                     <div className = "content">
                         <div className="rect">
-                            <form onSubmit = {this.handleSubmit}>
+                            <form onSubmit = {this.handleSubmit} noValidate>
                                 <img src="https://i.ibb.co/wrH293p/Mattra7-logo-1.png" alt="logo" />
                                 <h3>Create a new account</h3>
                                 <TextField className="FirstName"
@@ -143,9 +153,9 @@ class Signup extends Component
                                 </Typography>
                                 )}
 
-                                <button type = "submit">
-                                    Sign up
-                                </button>
+                                <Button type = "submit" disabled={loading}>
+                                    {loading? <CircularProgress color="white" /> : "Sign up" } 
+                                </Button>
                                 <small> Already have an account? <Link className="Link" to="/Login" > LOG IN </Link> </small>
                             </form>
                         </div>

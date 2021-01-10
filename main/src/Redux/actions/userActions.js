@@ -10,6 +10,7 @@ import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => 
 {
+    dispatch({ type: CLEAR_ERRORS })
     dispatch({ type: LOADING_UI });
     axios.post('/login', userData)
         .then(res => {
@@ -25,12 +26,13 @@ export const loginUser = (userData, history) => (dispatch) =>
 
 export const signupUser = (newUser, history) => (dispatch) =>
 {
+    dispatch({ type: CLEAR_ERRORS })
     dispatch({ type: LOADING_UI });
     axios.post('/signup', newUser)
         .then(res => {
             Util(res.data.token, history, dispatch);
         }) .catch(e => {
-            console.log(e);
+            // console.log(e);
             dispatch({
                 type: SET_ERRORS,
                 payload: e.response.data
@@ -42,19 +44,21 @@ const Util = (token, history, dispatch) => {
     const FBIdToken = `Bearer ${token}`;
     localStorage.setItem('FBIdToken', FBIdToken);
     axios.defaults.headers.common['Authorization'] = FBIdToken; 
-    dispatch(getUserData());
-    dispatch({type: CLEAR_ERRORS});
-    history.push('/Home')
+    dispatch(getUserData())
+    .then(() => {
+        dispatch({type: CLEAR_ERRORS});
+        history.push('/Home')
+    })
 }
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
-    delete axios.defaults.common['Authorization'];
+    delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED});
 }
 
 export const getUserData = () => (dispatch) => {
-    axios.get('/user')
+    return axios.get('/user')
     .then(res => {
         dispatch({
             type: SET_USER,

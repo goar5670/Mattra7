@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 import Footer from "../Components/Footer"
 
-class HelpPage extends Component
+class Help extends Component
 {
     constructor(props)
     {
@@ -25,4 +25,4 @@ class HelpPage extends Component
     }
 }
 
-export default HelpPage
+export default Help
