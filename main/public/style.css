@@ -12,18 +12,27 @@ body {
     overflow-x: hidden;
 }
 
+/* Error Styling */
+
+.customError {
+    color: red;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
 /* Footer Styling */
 
 .footer {
     background-color: #F7F7F7;
     text-align: left;
+    position: relative;
     padding: 20px;
     clear: both;
     color: black;
     font-style: inherit;
     padding-left: 150px;
     padding-right: 150px;
-    position: absolute;
     bottom: 0;
     width: 100%;
     border-top-width: 1px;
@@ -66,11 +75,8 @@ body {
 /* Popover Styling */
 
 .popover {
-    position: absolute;
     top: 0;
     left: 0;
-    z-index: 1060;
-    display: block;
     max-width: 276px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-style: normal;
@@ -279,6 +285,18 @@ body {
     padding-bottom: 30px;
 }
 
+.rect small {
+    margin: 0px 40px 20px;
+    font-size: 0.9rem;
+}
+
+.rect .Link {
+    font-weight: bold;
+    text-decoration: none;
+    color: steelblue;
+    font-size: 0.8rem;
+}
+
 .rect h3 {
     text-align: center;
     font-size: 22px;
@@ -295,24 +313,13 @@ body {
     width: 84%;
 }
 
-.rect .FirstName {
-    margin-left: 40px;
-    width: 38%;
-}
-
-.rect .LastName {
-    margin-left: 40px;
-    width: 38%;
-}
-
-
-.rect input[type="submit"] {
+.rect button[type="submit"] {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto 10px;
     width: 85%;
     border: none;
     outline: none;
-    padding: 16px;
+    height: 50px;
     font-size: 18px;
     font-family: "Open Sans", sans-serif;
     background: #3e78ad;
@@ -321,12 +328,12 @@ body {
     border-radius: 8px;
 }
 
-.rect input[type="submit"]:hover {
+.rect button[type="submit"]:hover {
     cursor: pointer;
     background: #24496b;
 }
 
-.rect input[type="submit"]:active {
+.rect button[type="submit"]:active {
     cursor: pointer;
     background: #3e78ad;
 }
@@ -340,6 +347,7 @@ body {
 /* NavBar Styling */
 
 .nav {
+    z-index: 1000000;
     background: #1b262c;
     position: sticky;
     top: 0;
@@ -434,13 +442,11 @@ body {
 .Home {
     font-family: "Open Sans", sans-serif;
     background-color: #FFF;
-    
 }
 
 .Home .main {
     min-height: 100vh;
     display: block;
-    position: relative;
     padding-bottom: 60px;
 }
 .Home .header {
@@ -465,23 +471,6 @@ body {
     font-weight: lighter;
 
 
-}
-
-.Home .footer {
-    background-color: #F7F7F7;
-    text-align: left;
-    padding: 20px;
-    clear: both;
-    color: black;
-    font-style: inherit;
-    padding-left: 150px;
-    padding-right: 150px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top-width: 1px;
-    border-top-color: #e3e1e1;
-    border-top-style: solid;
 }
 
 
@@ -567,33 +556,67 @@ body {
 
 .Login {
     font-family: "Open Sans", sans-serif;
-    background-color: #FFF;
-    margin: auto;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #FF385C;
 }
 
 
 .Login .main {
-    min-height: 100vh;
-    position: relative;
-    background-color: #FF385C;
     display: block;
 }
 
 .Login .content {
-    padding-top: 170px; 
+    padding-top: 200px; 
+    /* padding-bottom: 265px; */
 }
+
 
 /* Signup Page Styling */
 
-.Signup .main {
-    min-height: 100vh;
-    position: relative;
+.Signup {
+    position: absolute;
     background-color: #FF385C;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.Signup .main {
     display: block;
 }
 
 .Signup .content {
-    padding-top: 100px; 
+    padding-top: 190px; 
+}
+
+.Signup .rect .ConfirmPassword {
+    margin: 0 40px 20px;
+    width: 84%;
+}
+
+.Signup .rect .FirstName {
+    margin: 0px 40px 20px;
+    width: 38%;
+    
+}
+
+.Signup .rect .LastName {
+    width: 38%;
+}
+
+/* Help Page Styling */
+
+.Help {
+
+}
+
+.Help .main {
+    display: block;
 }
 
 
@@ -603,7 +626,7 @@ body {
 .List .main {
     min-height: 100vh;
     display: block;
-    position: relative;
+    position: static;
     padding-bottom: 60px;
 
 }
@@ -621,23 +644,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     /*text-transform: capitalize;*/
-}
-
-.List .footer {
-    background-color: #F7F7F7;
-    text-align: left;
-    padding: 20px;
-    clear: both;
-    color: black;
-    font-style: inherit;
-    padding-left: 150px;
-    padding-right: 150px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top-width: 1px;
-    border-top-color: #e3e1e1;
-    border-top-style: solid;
 }
 
 .List .content, .List .header {
@@ -778,7 +784,6 @@ body {
 .Find .main {
     min-height: 100vh;
     display: block;
-    position: relative;
     padding-bottom: 60px;
 
 }
@@ -796,22 +801,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     /*text-transform: capitalize;*/
-}
-
-.Find .footer {
-    text-align: left;
-    padding: 20px;
-    clear: both;
-    color: black;
-    font-style: inherit;
-    padding-left: 150px;
-    padding-right: 150px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top-width: 1px;
-    border-top-color: #e3e1e1;
-    border-top-style: solid;
 }
 
 .Find .content, .Find .header {

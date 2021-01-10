@@ -1,8 +1,9 @@
 import React, { Component, useState, useEffect} from "react"
 import axios from "axios"
-import Item from "./Components/Item"
-import Loading from "./Components/Loading"
-// import {endpoint} from "./Components/Vars"
+import Item from "../Components/Item"
+import Loading from "../Components/Loading"
+import Footer from "../Components/Footer"
+
 
 function FindPage()
 {
@@ -24,7 +25,7 @@ function FindPage()
     });
 
 
-    const fetchItems = async () => {
+    const fetchItems = () => {
         return axios.get('/places', {params: filter}).then((res) => {
             setTimeout(() => {
                 if(res.status === 200)
@@ -35,6 +36,8 @@ function FindPage()
                 }
                 else console.log(res.status);
             })
+        }) .catch(e => {
+            console.log(e);
         });
     }
     useEffect(() => {
@@ -54,26 +57,27 @@ function FindPage()
     }
 
     return (
-        <div class="Find">
-            <div class="main">
-                <div class="header">
+        <div className="Find">
+            <div className="main">
+                <div className="header">
                     <h1> Find a place</h1>
                 </div>
-                <div class= "filter">
+                <div className= "filter">
                     <form>
                         <table>
+                        <tbody>
                             <tr>
                                 <td>
-                                    <select name="governorate" onChange = {handleChange}>
-                                        <option value="0" disabled selected>Governorate</option>
+                                    <select name="governorate" onChange = {handleChange} defaultValue="0">
+                                        <option value="0" disabled>Governorate</option>
                                         <option value="Giza">Giza</option>
                                         <option value="Cairo">Cairo</option>
                                         <option value="Alexandria">Alexandria</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="rooms" onChange = {handleChange}>
-                                        <option value="0" disabled selected>Number of rooms</option>
+                                    <select name="rooms" onChange = {handleChange} defaultValue="0">
+                                        <option value="0" disabled>Number of rooms</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -83,8 +87,8 @@ function FindPage()
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="size" onChange = {handleChange}>
-                                        <option value="0" disabled selected>Unit size</option>
+                                    <select name="size" onChange = {handleChange} defaultValue="0">
+                                        <option value="0" disabled>Unit size</option>
                                         <option value={temp1}> {temp1} </option>
                                         <option value="75 - 100">75 - 100</option>
                                         <option value="100 - 150">100 - 150</option>
@@ -94,8 +98,8 @@ function FindPage()
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="price" onChange = {handleChange}>
-                                        <option value="0" disabled selected>Rent fee</option>
+                                    <select name="price" onChange = {handleChange} defaultValue="0">
+                                        <option value="0" disabled>Rent fee</option>
                                         <option value={temp3}> {temp3} </option>
                                         <option value="1000 - 1500">1000 - 1500</option>
                                         <option value="1500 - 2000">1500 - 2000</option>
@@ -105,8 +109,8 @@ function FindPage()
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="university" onChange = {handleChange}>
-                                        <option value="0" disabled selected>Nearby university</option>
+                                    <select name="university" onChange = {handleChange} defaultValue="0">
+                                        <option value="0" disabled>Nearby university</option>
                                         <option value="AUC">AUC</option>
                                         <option value="BUE">BUE</option>
                                         <option value="GUC">GUC</option>
@@ -120,7 +124,7 @@ function FindPage()
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="search-bar" placeholder="Search"/>
+                                    <input type="text" className="search-bar" placeholder="Search"/>
                                 </td>
                             </tr>
                             <tr>
@@ -128,6 +132,7 @@ function FindPage()
                                     <input onSubmit={handleSubmit} type="submit" value = "Go" />
                                 </td>
                             </tr>
+                        </tbody>
                         </table>
                     </form>
                 </div>
@@ -144,10 +149,8 @@ function FindPage()
                         
                     </div>
                 </div>
-                <div class="footer">
-                    &copy; 2020 Mattra7, Inc. All rights reserved. 
-                </div>
             </div>
+            <Footer />
         </div>
     )
 }

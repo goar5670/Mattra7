@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from 'react-router-dom'
 class LangPage extends Component
 {
     constructor(props)
@@ -38,8 +39,8 @@ class LangPage extends Component
                 </div>
                 <div className="langpick">
                     <form className="langmenu">
-                        <select name="HomePage" value = {this.state.language} onChange = {this.handleChange}>
-                            <option className="arabic" value="" disabled selected>اختر اللغة</option>
+                        <select name="Home" value = {this.state.language} onChange = {this.handleChange}>
+                            <option className="arabic" value="" disabled>اختر اللغة</option>
                             <option className="arabic" value="arabic">
                                 العربية
                             </option>

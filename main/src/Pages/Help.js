@@ -1,4 +1,7 @@
 import React, { Component } from "react"
+
+import Footer from "../Components/Footer"
+
 class HelpPage extends Component
 {
     constructor(props)
@@ -12,10 +15,11 @@ class HelpPage extends Component
     render()
     {
         return (
-            <div className = "List">
-                <div classaName = "main">
+            <div className = "Help">
+                <div className = "main">
                     code goes brrrrrrrrrrrrrr
                 </div>
+                <Footer />
             </div>
         )
     }

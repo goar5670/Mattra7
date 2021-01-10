@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react"
 import axios from "axios"
-import Item from "./Components/Item"
+import Item from "../Components/Item"
 // import {endpoint} from "./Components/Vars"
 
 function AdPage(props) {

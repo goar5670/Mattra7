@@ -24,52 +24,52 @@ class NavBar extends Component
     {
         return (
             <div className="nav">
-                <Link to = "/HomePage">
+                <Link to = "/Home">
                     <img src="https://i.ibb.co/NLLVycn/logo2.png" alt="logo" className="logo"/>
                 </Link>
-                {window.token=="-1"?
                 <div className = "nav-list">
                     <ul>
                         <li> 
                             <div className= "langpick"> 
-                                <select onChange={this.handleChange} name = "language">
-                                    <option className="arabic" value="arabic" selected = {window.lang==="arabic"}>
+                                <select onChange={this.handleChange} name = "language" defaultValue = {window.lang}>
+                                    <option className="arabic" value="arabic" >
                                         العربية
                                     </option>
-                                    <option value="english" selected = {window.lang==="english"}>
+                                    <option value="english" >
                                         English
                                     </option>
                                 </select> 
                             </div> 
                         </li>
-                        <li> <Link to = "/FindPage">Find a place</Link> </li>
-                        <li> <Link to = "/ListPage">List a place</Link> </li>
-                        <li> <Link to = "/HelpPage">Help</Link> </li>
-                        <li> <Link to = "/LoginPage">Login</Link> </li>
-                        <li> <Link to = "/SignupPage">Sign up</Link> </li>
-                    </ul>
-                </div>:
-                <div className = "nav-list">
-                    <ul>
-                        <li> 
-                            <div className= "langpick"> 
-                                <select onChange={this.handleChange} name = "language">
-                                    <option className="arabic" value="arabic" selected = {window.lang==="arabic"}>
-                                        العربية
-                                    </option>
-                                    <option value="english" selected = {window.lang==="english"}>
-                                        English
-                                    </option>
-                                </select> 
-                            </div> 
-                        </li>
-                        <li> <Link to = "/FindPage">Find a place</Link> </li>
-                        <li> <Link to = "/ListPage">List a place</Link> </li>
-                        <li> <Link to = "/HelpPage">Help</Link> </li>
-                        <li> <Link to = "/LogoutPage">Logout</Link> </li>
+                        <li> <Link to = "/Find">Find a place</Link> </li>
+                        <li> <Link to = "/List">List a place</Link> </li>
+                        <li> <Link to = "/Help">Help</Link> </li>
+                        <li> <Link to = "/Login">Login</Link> </li>
+                        <li> <Link to = "/Signup">Sign up</Link> </li>
                     </ul>
                 </div>
-                }
+                {/* :
+                <div className = "nav-list">
+                    <ul>
+                        <li> 
+                            <div className= "langpick"> 
+                                <select onChange={this.handleChange} name = "language">
+                                    <option className="arabic" value="arabic" selected = {window.lang==="arabic"}>
+                                        العربية
+                                    </option>
+                                    <option value="english" selected = {window.lang==="english"}>
+                                        English
+                                    </option>
+                                </select> 
+                            </div> 
+                        </li>
+                        <li> <Link to = "/Find">Find a place</Link> </li>
+                        <li> <Link to = "/List">List a place</Link> </li>
+                        <li> <Link to = "/Help">Help</Link> </li>
+                        <li> <Link to = "/Logout">Logout</Link> </li>
+                    </ul>
+                </div>
+                } */}
             </div>
         )
     }

@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import axios from "axios"
-import {Redirect} from "react-router-dom"
 import TextField from "@material-ui/core/TextField"
 // import {endpoint} from "./Vars"
 import { useForkRef } from "@material-ui/core"
@@ -40,25 +39,19 @@ class SingupForm extends Component
             )
         }
     }
-    async handleSubmit(event)
+    handleSubmit(event)
     {
         event.preventDefault();
-        const res = await axios.post("/signup", this.state)
-        if(res.status === 201)
-        {
-            this.setState({redirect: "something"})        
-            console.log(res.status);
-        }
-        else return res.status;
+        axios.post("/signup", this.state)
+        .then({
+
+        })
     }
     
     render()
-    {
-        if(this.state.redirect)
-            return <Redirect to="./Signup/Redirect"/>
-    
+    {    
         return (
-            <div class="rect">
+            <div className="rect">
                 <form onSubmit = {this.handleSubmit}>
                     <img src="https://i.ibb.co/wrH293p/Mattra7-logo-1.png" alt="logo" />
                     <h3>Create a new account</h3>
@@ -80,8 +73,6 @@ class SingupForm extends Component
                         name = "lastName"
                         onChange = {this.handleChange}   
                     />
-                    <br />
-                    <br />
                     <TextField className="Email"
                         id="filled-basic" 
                         label="Email" 
@@ -91,7 +82,6 @@ class SingupForm extends Component
                         name = "email"
                         onChange = {this.handleChange}   
                     />
-                    <br/>
                     <TextField className="Password"
                         id="filled-basic" 
                         label="Password" 
@@ -101,8 +91,7 @@ class SingupForm extends Component
                         name = "password"
                         onChange = {this.handleChange}   
                     />
-                    <br/>
-                    <TextField className="Password"
+                    <TextField className="ConfirmPassword"
                         id="filled-basic" 
                         label="Confirm Password" 
                         type = "password"
@@ -111,9 +100,11 @@ class SingupForm extends Component
                         name = "confirmPassword"
                         onChange = {this.handleChange}   
                     />
-                    <br />
                     
-                    <input type = "submit" value = "Sign up" />
+                    <button type = "submit">
+                        Sign up
+                    </button>
+                    <small> Don't have an account? <Link className="Link" to="/Signup" > SIGN UP </Link> </small>
                 </form>
             </div>
         )

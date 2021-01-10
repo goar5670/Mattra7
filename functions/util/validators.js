@@ -22,17 +22,17 @@ exports.validateSignupData = (newUser) => {
     if(isEmpty(newUser.password)) {
         errors.password = "Can't be empty";
     }
-    
+
     if(newUser.password !== newUser.confirmPassword) {
-        errors.confirmPassword = "Password do not match"
+        errors.confirmPassword = "Passwords do not match"
     }
 
     if(isEmpty(newUser.firstName)) {
-        errors.handle = "Can't be empty"
+        errors.firstName = "Can't be empty"
     }
 
     if(isEmpty(newUser.lastName)) {
-        errors.handle = "Can't be empty"
+        errors.lastName = "Can't be empty"
     }
 
     return {

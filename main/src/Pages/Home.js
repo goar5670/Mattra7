@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import {Link, Router} from "react-router-dom"
-
+import Footer from "../Components/Footer"
 class HomePage extends Component
 {
     constructor(props)
@@ -63,10 +63,8 @@ class HomePage extends Component
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         </div>
                     </div>
-                    <div className="footer">
-                        &copy; 2020 Mattra7, Inc. All rights reserved. 
-                    </div>
                 </div>
+                <Footer />
             </div>
         )
     }

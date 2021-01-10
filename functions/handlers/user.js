@@ -9,6 +9,7 @@ const {
     validateSignupData,
     validateLoginData
 } = require('../util/validators')
+const { user } = require('firebase-functions/lib/providers/auth')
 
 exports.signup = (req, res) => {
     const newUser = req.body;
@@ -40,7 +41,8 @@ exports.signup = (req, res) => {
     }) .catch(e => {
         console.error(e);
         if(e.code === 'auth/email-already-in-use') {
-            return res.status(400).json({email: "Email is already taken"})
+            errors.email = "Email is already taken";
+            return res.status(400).json(errors)
         }
         return res.status(500).json({error: e.code});
     })
@@ -58,10 +60,7 @@ exports.login = (req, res) => {
         return res.json({token});
     }) .catch(e => {
         console.error(e);
-        if(e.code === 'auth/wrong-password') {
-            return res.status(403).json({general: "Wrong credentials"});
-        }
-        return res.status(500).json({error: e.code});
+        return res.status(403).json({general: "Wrong credentials, please try again"});
     })
 }
 
@@ -91,6 +90,32 @@ exports.getUserDetails = (req, res) => {
             )
         })
         return res.json(userDetails);
+    }) .catch(e => {
+        console.error(e);
+        return res.status(500).json({error: e.code});
+    })
+}
+
+exports.getAuthUser = (req, res) => {
+    let userData = {};
+    db.doc(`/users/${req.user.uid}`).get()
+    .then(doc => {
+        if(doc.exists) {
+            userData.credentials = doc.data();
+            return db.collection('places')
+            .where('owner', '==', req.user.uid)
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get();
+        }
+        else return res.status(404).json({error: "User not found"});
+    })
+    .then((data) => {
+        userData.places = [];
+        data.forEach(doc => {
+            userData.places.push(doc.data());
+        })
+        return res.json(userData);
     }) .catch(e => {
         console.error(e);
         return res.status(500).json({error: e.code});

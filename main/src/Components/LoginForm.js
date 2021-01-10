@@ -1,9 +1,12 @@
 import React, { Component } from "react"
+import Link from "react-router-dom/Link"
 import axios from "axios"
-import TextField from "@material-ui/core/TextField"
-import {Redirect} from "react-router-dom"
 
-// import {Popover, Button} from "@blueprintjs/core"
+//MUI STUFF
+import TextField from "@material-ui/core/TextField"
+import Typography from "@material-ui/core/Typography"
+import CircularProgress from "@material-ui/core/CircularProgress"
+
 class LoginForm extends Component
 {
     constructor(props)
@@ -11,7 +14,9 @@ class LoginForm extends Component
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            loading: false,
+            errors: {}
         }
         
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -36,8 +41,32 @@ class LoginForm extends Component
             )
         }
     }
-    async handleSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault()
+        const userCred = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        this.setState(
+            {
+                loading: true
+            }
+        )
+        console.log(userCred);
+        axios.post('/login', userCred)
+        .then(res => {
+            // console.log(res.data);
+            this.setState({
+                loading: false
+            });
+            this.props.history.push('/Home')
+        }) .catch(e => {
+            console.log(e);
+            this.setState({
+                errors: e.response.data,
+                loading: false
+            })
+        })
         // const res = await axios.post("/login", this.state)
         
         // if(res.status == 200)
@@ -48,9 +77,10 @@ class LoginForm extends Component
     }
     render()
     {
+        const {errors} = this.state;
         return (
-            <div class="rect">
-                <form onSubmit = {this.handleSubmit}>
+            <div className="rect">
+                <form onSubmit = {this.handleSubmit} noValidate>
                     <img src="https://i.ibb.co/wrH293p/Mattra7-logo-1.png" alt="logo" />
                     <h3>Log in to Mattra7</h3>
                     <TextField className="Email"
@@ -60,7 +90,9 @@ class LoginForm extends Component
                         variant = "filled"
                         color = "secondary" 
                         name = "email"
-                        onChange = {this.handleChange}      
+                        onChange = {this.handleChange}
+                        helperText={errors.email}     
+                        error={errors.email ? true: false}
                     />
                     <br/>
                     <TextField className="Password"
@@ -71,10 +103,18 @@ class LoginForm extends Component
                         color = "secondary"
                         name = "password"
                         onChange = {this.handleChange}   
-    
+                        helperText={errors.password}
+                        error={errors.password? true: false}
                     />
-                    <br/>
-                    <input type = "submit" value = "Log in" />
+                    {errors.general && (
+                    <Typography variant="body2" className="customError">
+                        {errors.general}
+                    </Typography>
+                    )}
+                    <button type = "submit">
+                       Log in
+                    </button>
+                    <small> Don't have an account? <Link className="Link" to="/Signup" > SIGN UP </Link> </small>
                 </form>
             </div>
         )

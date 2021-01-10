@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 import {UncontrolledPopover, PopoverBody, PopoverHeader} from "reactstrap"
 import axios from "axios"
-import PhotoInput from "./Components/PhotoInput.js"
+import PhotoInput from "../Components/PhotoInput.js"
 import {Redirect} from "react-router-dom"
+
+import Footer from "../Components/Footer"
 
 // import {endpoint} from "./Components/Vars"
 
@@ -120,6 +122,7 @@ class ListPage extends Component
                         <div className= "listing-form">
                             <form onSubmit = {this.handleSubmit}>
                                 <table>
+                                    <tbody>
                                     <tr>
                                         <td className="label">Title</td>
                                     </tr>
@@ -295,14 +298,13 @@ class ListPage extends Component
                                             <input type = "submit" value = "List it" />
                                         </td>
                                     </tr>
+                                    </tbody>
                                 </table>
                             </form>
                         </div>
                     </div>
-                    <div class="footer">
-                        &copy; 2020 Mattra7, Inc. All rights reserved. 
-                    </div>
                 </div>
+                <Footer />
             </div>
         )
     }
