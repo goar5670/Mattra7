@@ -6,8 +6,9 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 
-const NavBarUtil = (handleChange, authenticated) => {
+const NavBarUtil = (handleChange, authenticated, userId) => {
     if(authenticated)
+    {
         return (
             <ul>
                 <li> 
@@ -25,9 +26,11 @@ const NavBarUtil = (handleChange, authenticated) => {
                 <li> <Link to = "/Find">Find a place</Link> </li>
                 <li> <Link to = "/List">List a place</Link> </li>
                 <li> <Link to = "/Help">Help</Link> </li>
+                <li> <Link to = {`/Profile/${userId}`}> Profile</Link></li>
                 <li> <Link to = "/Logout">Logout</Link>  </li>
             </ul>
         )
+    }
     else
         return (
             <ul>
@@ -59,7 +62,8 @@ class NavBar extends Component
         super(props)
         this.state = {
             language: "arabic",
-            authenticated: false
+            authenticated: false,
+            userId: ""
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -67,7 +71,8 @@ class NavBar extends Component
     componentWillReceiveProps(nextProps)
     {
         this.setState({
-            authenticated: nextProps.user.authenticated
+            authenticated: nextProps.user.authenticated,
+            userId: nextProps.user.userId
         })
     }
 
@@ -84,7 +89,7 @@ class NavBar extends Component
                     <img src="https://i.ibb.co/NLLVycn/logo2.png" alt="logo" className="logo"/>
                 </Link>
                 <div className = "nav-list">
-                    {NavBarUtil(this.handleChange, this.state.authenticated)}
+                    {NavBarUtil(this.handleChange, this.state.authenticated, this.state.userId)}
                 </div>
             </div>
         )
