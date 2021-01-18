@@ -5,22 +5,17 @@ import {Route, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 
-const AuthRoute = ({component: Component, authenticated, ...rest}) =>
+const UnAuthRoute = ({component: Component, authenticated, ...rest}) =>
 {
     return <Route
     {...rest}
     render={(props) => {
-        return authenticated === false?
-         <Redirect to ={{
-            pathname: '/Login',
-            state: {redirect: rest.path}
-          }} /> 
-         : 
-         <Component {...props} />
+        return authenticated === true?
+         <Redirect to ='/Home' /> : <Component {...props} />
     }} />
 }
 
-AuthRoute.propTypes = {
+UnAuthRoute.propTypes = {
     user: PropTypes.object.isRequired
 }
 
@@ -28,4 +23,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated
 })
 
-export default connect(mapStateToProps)(AuthRoute)
+export default connect(mapStateToProps)(UnAuthRoute)
