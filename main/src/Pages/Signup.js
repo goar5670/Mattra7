@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField"
 import Typography  from "@material-ui/core/Typography"
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
 
 class Signup extends Component
 {
@@ -87,7 +88,7 @@ class Signup extends Component
             <div className = "Signup">
                 <div className = "main">
                     <div className = "content">
-                        <div className="rect">
+                        <Card className = 'rect' elevation={5}>
                             <form onSubmit = {this.handleSubmit} noValidate>
                                 <img src="https://i.ibb.co/wrH293p/Mattra7-logo-1.png" alt="logo" />
                                 <h3>Create a new account</h3>
@@ -158,7 +159,7 @@ class Signup extends Component
                                 </Button>
                                 <small> Already have an account? <Link className="Link" to="/Login" > LOG IN </Link> </small>
                             </form>
-                        </div>
+                        </Card>
                     </div>
                 </div>
             </div>
