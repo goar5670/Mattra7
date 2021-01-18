@@ -2,11 +2,14 @@ import React, { Component } from "react"
 import {Link} from "react-router-dom"
 import PropTypes from 'prop-types'
 
-//MUI STUFF
+//MUI
 import TextField from "@material-ui/core/TextField"
 import Typography from "@material-ui/core/Typography"
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert'
+import Card from '@material-ui/core/Card'
 
 //Redux
 import { loginUser } from "../Redux/actions/userActions"
@@ -21,11 +24,21 @@ class Login extends Component
             email: "",
             password: "",
             errors: {},
-            loading: false
+            loading: false,
+            open: false
         }
         
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleClose = this.handleClose.bind(this)
+        this.handleOpen = this.handleOpen.bind(this)
+    }
+
+    componentDidMount()
+    {
+        this.setState({
+            open: this.props.location.state
+        })
     }
 
     componentWillReceiveProps(nextProps)
@@ -65,6 +78,19 @@ class Login extends Component
             )
         }
     }
+
+    handleClose = (event, reason) => {
+        this.setState({
+            open: false
+        })
+    } 
+
+    handleOpen = () => {
+        this.setState({
+            open: true
+        })
+    }
+
     handleSubmit(event) {
         event.preventDefault()
         const userData = {
@@ -75,12 +101,18 @@ class Login extends Component
     }
     render()
     {
+        
         const {errors, loading} = this.state;
         return (
             <div className="Login">
                 <div className="main">
+                    <Snackbar open={this.state.open} autoHideDuration={4000} onClose={this.handleClose}>
+                        <Alert onClose={this.handleClose} severity="error">
+                            You must be logged in to view this page
+                        </Alert>
+                    </Snackbar>
                     <div className="content">
-                        <div className="rect">
+                        <Card className="rect" elevation={5}>
                             <form onSubmit = {this.handleSubmit} noValidate>
                                 <img src="https://i.ibb.co/wrH293p/Mattra7-logo-1.png" alt="logo" />
                                 <h3>Log in to Mattra7</h3>
@@ -117,7 +149,7 @@ class Login extends Component
                                 </Button>
                                 <small> Don't have an account? <Link className="Link" to="/Signup" > SIGN UP </Link> </small>
                             </form>
-                        </div>                        
+                        </Card>
                     </div>
                 </div>
             </div>
