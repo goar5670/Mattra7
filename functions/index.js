@@ -7,7 +7,8 @@ const {
     login,
     getUserDetails,
     updateUserInfo,
-    getAuthUser
+    getAuthUser,
+    updatePFP
 } = require('./handlers/user');
 
 const {
@@ -27,9 +28,10 @@ app.use(cors());
 // User routes
 app.post('/signup', signup);
 app.post('/login', login);
+app.post('/user', FBAuth, updateUserInfo)
+app.post('/user/image', FBAuth, updatePFP)
 app.get('/user/:userId', getUserDetails)
 app.get('/user', FBAuth, getAuthUser)
-app.post('/user', FBAuth, updateUserInfo)
 
 //Place routes
 app.post('/places', FBAuth, listPlace);
