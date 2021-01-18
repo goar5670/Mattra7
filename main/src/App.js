@@ -20,17 +20,19 @@ import Find from "./Pages/Find"
 import Ad from "./Pages/Ad"
 import Logout from "./Pages/Logout"
 import Profile from './Pages/Profile'
+import NotFound from './Pages/NotFound'
 
 //Components
 import NavBar from "./Components/NavBar"
-import AuthRoute from "./Components/AuthRoute"
+import UnAuthRoute from "./Components/UnAuthRoute"
+import AuthRoute from './Components/AuthRoute'
 
 const token = localStorage.FBIdToken;
 if(token){
     const decodedToken = jwtDecode(token);
     if(decodedToken.exp * 1000 < Date.now())
     {
-        window.location.href = '/login'
+        window.location.href = '/Login'
         store.dispatch(logoutUser());
     }
     else
@@ -55,15 +57,16 @@ class App extends Component
                         <Router>
                             <NavBar />
                             <Switch>
-                                <AuthRoute exact path="/Login" component={Login}/>
-                                <AuthRoute exact path="/Signup" component={Signup} />
+                                <UnAuthRoute exact path="/Login" component={Login}/>
+                                <UnAuthRoute exact path="/Signup" component={Signup} />
                                 <Route exact path="/Home" component={Home} />
                                 <Route exact path="/Help" component={Help} />
-                                <Route exact path="/List" component={List} />
+                                <AuthRoute exact path="/List" component={List} />
                                 <Route exact path="/Find" component={Find} />
                                 <Route exact path="/Ad/:itemId" component={Ad} />
                                 <Route exact path="/Logout" component={Logout} />
                                 <Route exact path='/Profile/:userId' component={Profile} />
+                                <Route component={NotFound} />
                             </Switch>
                         </Router>
                     </Switch>
