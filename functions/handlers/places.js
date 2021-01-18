@@ -14,7 +14,7 @@ exports.listPlace = (req, res) => {
         size: req.body.size,
         createdAt: new Date().toISOString()
     }
-
+    //TODO validate place info
     db
     .collection('places')
     .add(newPlace)

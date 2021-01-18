@@ -4,6 +4,11 @@ import axios from "axios"
 import PhotoInput from "../Components/PhotoInput.js"
 import {Redirect} from "react-router-dom"
 
+//Redux
+import store from '../Redux/store'
+import { listPlace } from '../Redux/actions/dataActions' 
+
+//Components
 import Footer from "../Components/Footer"
 
 // import {endpoint} from "./Components/Vars"
@@ -11,7 +16,7 @@ import Footer from "../Components/Footer"
 
 const defaultPicture = "https://i.ibb.co/XCNVgqq/New-Project-1.png";
 
-class ListPage extends Component
+class List extends Component
 {
     constructor(props) {
         super(props)
@@ -78,23 +83,13 @@ class ListPage extends Component
         }
     }
 
-    async handleSubmit(event) {
-        if(window.token === "-1") alert("You must be logged in to list a place.");
-        else
-        {
-            const headers = {
-                Authorization: "Bearer " + window.token
-            }
-            console.log(headers);
-            event.preventDefault()
-            const res = await axios.post("/places", {...this.state}, {headers: headers})
-            if(res.status == 200) 
-            {
-                this.state.redirect = 1;
-                this.props.history.push('./FindPage')
-            }
-            console.log(this.state)
-        }
+    handleSubmit(event) {
+            axios.post("/places", {...this.state})
+            .then(() => {
+                this.props.history.push('/Home');
+            }) .catch(e => {
+                console.log(e);
+            })
     }
 
     render()
@@ -105,14 +100,11 @@ class ListPage extends Component
         const temp4 = "> 3000"
         const temp5 = "> 5"
         const list = ["Select", "Giza", "Cairo"]
-        const options = list.map((item, id) => {
-            if(id == 0) return <option disabled selected> {item} </option>
-            else return <option> {item} </option>
-        }) 
-        const {redirect} = this.state
-        if(redirect) return <Redirect to="./FindPage" />
+        // const options = list.map((item, id) => {
+        //     if(id == 0) return <option disabled selected> {item} </option>
+        //     else return <option> {item} </option>
+        // }) 
         return (
-            redirect? <Redirect to="./FindPage" />:
             <div className="List">
                 <div className="main">
                     <div className="header">
@@ -310,4 +302,4 @@ class ListPage extends Component
     }
 }
 
-export default ListPage
+export default List

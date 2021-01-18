@@ -6,15 +6,14 @@
 
 - page for every listed place
 
-- 2 types of profile mo2gr, most2gr
-
-- lel mo2gr hyb2a feh list bkol l places ely 3mlha list
-
 - mmkn yedit ay info l ay place + delete
 
-- profile for every mo2gr
+- profile for every user
 
 - backend 
 
 - design for place card
  
+- you have to complete some profile info before listing a place
+
+- feedback on users
