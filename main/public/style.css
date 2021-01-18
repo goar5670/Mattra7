@@ -40,6 +40,32 @@ body {
     border-top-style: solid;
 }
 
+/* Item (Component) Style */
+
+.item {
+    background: #e5e5e5;
+    padding: 20px 20px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+
+.item:hover {
+    background: #bababa;
+}
+
+.item:active {
+    background: #e5e5e5;
+}
+.item a {
+    text-decoration: none;
+    color: #000;
+}
+
+.item-description {
+    margin-right: 15px;
+}
+
+
 /* Loading Styling */
 
 .Loading {
@@ -280,7 +306,6 @@ body {
     background-color: #FFF;
     width: 500px;
     margin: auto;
-    border-radius: 15px;
     padding-top: 15px;
     padding-bottom: 30px;
 }
@@ -565,6 +590,12 @@ body {
     background-color: #FF385C;
 }
 
+.Login .Alert {
+    margin-top: 100px;
+    margin-left: 500px;
+    position: absolute;
+    width: 18%;
+}
 
 .Login .main {
     display: block;
@@ -572,9 +603,11 @@ body {
 
 .Login .content {
     padding-top: 200px; 
-    /* padding-bottom: 265px; */
 }
 
+.Login .content .rect {
+    border-radius: 1rem;
+}
 
 /* Signup Page Styling */
 
@@ -610,40 +643,134 @@ body {
     width: 38%;
 }
 
+.Signup .content .rect {
+    border-radius: 1rem;
+}
+
+/* NotFount Page Styling */
+
+.NotFound .main {
+    min-height: 85.823vh;
+}
+
+
 /* Help Page Styling */
 
 .Help .main {
+    min-height: 85.823vh;
     display: block;
 }
 
 /*  Profile Page Styling */
 
-.Profile {
-
-}
-
 .Profile .main {
     min-height: 85.823vh;
     top: 100px;
-    bottom: 0;
-    right: 0;
-    left: 0;
     display: block;
 }
 
-.Profile .placesList {
-    margin: 100px 150px 50px 20px;
-    width: 800px;
-    border-radius: 0.3rem;
-    background-color: green;
+.Profile .main .cover {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to right, #FF385C 0%, #fc3d83 100%);
 }
 
-.Profile .Paper {
-    margin: 100px 150px 50px 20px;
-    border-radius: 0.3rem;
-    background-color: green;
-    width: 400px;
+.Profile .main .header {
+    width: 100%;
+    top: 140px;
+    position: absolute;
 }
+
+.Profile .PFP {
+    display: inline-block;
+    margin: 0px 0px;
+    width: 22%;
+}
+
+.Profile .container {
+    height: 160px;
+    width: 160px;
+    display: block;
+    background-color: #FFF;
+    border-radius: 50%;
+    margin: 50px 50px 50px 100px;
+}
+
+.Profile .container img{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.Profile .header .edit {
+    position: absolute;
+    top: -5px;
+    right: 0px;
+}
+
+.Profile .header .edit-skeleton {
+    position: absolute;
+    top: 145px;
+    right: 190px;
+}
+
+
+.Profile  .PFP-skeleton {
+    margin-left: 5px;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 55px;
+    left: 100px;
+}
+
+.Profile .Loading {
+    margin-top: 200px;
+}
+
+.Profile .header .full-name {
+    display: inline-block;
+    color: #FFFFFF;
+    position: absolute;
+    top: 90px;
+    left: 300px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.Profile .header .info {
+    width: 1350px;
+    position: absolute;
+    top: 145px;
+    left: 300px;
+}
+
+.Profile .header .text {
+    margin-left: 10px;
+    margin-right: 100px;
+    color: rgb(91, 112, 131);
+    /* color: #FF385C; */
+}
+
+/* .Profile .contact-info {
+    display: block;
+    position: fixed;
+    top: 500px;
+    right: 100px;
+    width: 300px;
+    min-height: 300px;
+} */
+
+.Profile .placesList {
+    margin-top: 200px;
+    display: block;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
 
 /* List Page Styling */
 
@@ -836,11 +963,10 @@ body {
 
 .Find .filter {
     background: #F7F7F7;
-    border-bottom: 3px #e3e1e1 solid;
     padding-left: 150px;
-    padding-right: 150px;
-    padding-top: 20px;
-    position: sticky;
+    /* padding-right: 150px; */
+    /* padding-top: 20px; */
+    position: sticky ;
     top: 76.36px;
     margin-bottom: 80px;
 }
@@ -908,48 +1034,5 @@ body {
     cursor: pointer;
     background: #FF385C;
 }
-.Find .results .item {
-    background: #e5e5e5;
-    padding: 20px 20px;
-    margin-bottom: 50px;
-    border-radius: 5px;
-    
-}
-
-.Find .results .item:hover {
-    background: #bababa;
-}
-
-.Find .results .item:active {
-    background: #e5e5e5;
-}
-.Find .results a {
-    text-decoration: none;
-    color: #000;
-}
-
-.Find .results .item-description {
-    margin-right: 15px;
-}
 
 /*  Styling for Ad Page */
-
-.Ad .item {
-    background: #e5e5e5;
-    padding: 20px 20px;
-    margin-bottom: 50px;
-    border-radius: 5px;
-    
-}
-
-.Ad .item:hover {
-    background: #bababa;
-}
-
-.Ad .item:active {
-    background: #e5e5e5;
-}
-
-.Ad .item-description {
-    margin-right: 15px;
-}
