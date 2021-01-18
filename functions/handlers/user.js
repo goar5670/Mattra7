@@ -1,6 +1,7 @@
 const {admin, db} = require('../util/admin')
 
 const config = require('../util/config')
+const { v4: uuid_v4 } = require('uuid');
 
 const firebase = require('firebase')
 firebase.initializeApp(config)
@@ -72,6 +73,7 @@ exports.getUserDetails = (req, res) => {
         else
         {
             userDetails = doc.data();
+            userDetails.userId = req.params.userId
             return db
             .collection('places')
             .where('owner', '==', req.params.userId)
@@ -89,11 +91,55 @@ exports.getUserDetails = (req, res) => {
                 }
             )
         })
-        return res.json(userDetails);
+        return res.status(200).json(userDetails);
     }) .catch(e => {
         console.error(e);
         return res.status(500).json({error: e.code});
     })
+}
+
+exports.updatePFP = (req, res) => {
+    const BusBoy = require("busboy");
+    const path = require('path')
+    const os = require('os')
+    const fs = require('fs')
+    const  busboy = new BusBoy({ headers: req.headers });
+    let image = {}, name = "";
+    const token = uuid_v4();
+    busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+        console.log(filename, mimetype);
+        if(mimetype != 'image/jpeg' && mimetype != 'image/jpg' && mimetype != 'image/png')
+            return res.status(403).json({error: "uploaded file is not an image"});
+        const ext = filename.split(".")[filename.split(".").length-1];
+        name = `${req.user.uid}.${ext}`;
+        const filepath = path.join(os.tmpdir(), name);
+        image = {filepath, mimetype};
+        file.pipe(fs.createWriteStream(filepath));
+    })
+    busboy.on('finish', () => {
+        admin.storage().bucket().upload(image.filepath, {
+            gzip: true,
+            resumable: false,
+            metadata: {
+                metadata: {
+                    contentType: image.mimetype,
+                    firebaseStorageDownloadTokens: token
+                }
+            }
+        })
+        .then(() => {
+            const imageUrl =
+            `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${name}?alt=media&token=${token}`;
+            return db.doc(`/users/${req.user.uid}`).update({imageUrl});
+        })
+        .then(() => {
+            return res.status(200).json({message: "image uploaded successfully"});
+        }) .catch(e => {
+            console.log(e);
+            return res.status(500).json({error: e.code});
+        })
+    })
+    busboy.end(req.rawBody);
 }
 
 exports.getAuthUser = (req, res) => {
@@ -102,6 +148,7 @@ exports.getAuthUser = (req, res) => {
     .then(doc => {
         if(doc.exists) {
             userData.credentials = doc.data();
+            userData.userId = req.user.uid;
             return db.collection('places')
             .where('owner', '==', req.user.uid)
             .orderBy('createdAt', 'desc')
@@ -124,7 +171,6 @@ exports.getAuthUser = (req, res) => {
 
 exports.updateUserInfo = (req, res) => {
     let userDocument = db.doc(`/users/${req.user.uid}`)
-
     userDocument.update(req.body)
     .then(() => {
         return res.json({message: "User info updated successfully"});
