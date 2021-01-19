@@ -11,7 +11,8 @@ import {
 const initialState = {
     authenticated: false,
     loading: false,
-    credentials: {}
+    credentials: {},
+    userId:""
 }
 
 export default function(state = initialState, action)

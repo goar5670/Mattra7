@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 //Components
 import Footer from "../Components/Footer"
@@ -27,32 +28,27 @@ class Profile extends Component
     {
         super(props)
         this.state = {
-            loading: false,
+            loading: true,
             user: { 
-                places: [] 
+                
             }
         }
     }
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         this.setState({
             loading: true
         })
         axios.get(`/user/${this.props.match.params.userId}`)
         .then(res => {
-            if(res.status !== 200)
-            {
-                window.location.href = '/NotFound'
-            }
             this.setState({
                 user: res.data,
                 loading: false
             });
-            console.log(this.state.user.places);
-        }) .catch(e => {
-            window.location.href = '/NotFound'
+        }).catch(e => {
+            window.location.href = '/NotFound';
             console.log(e);
-        }) 
+        })
     }
 
     render()
@@ -65,7 +61,7 @@ class Profile extends Component
         <div className = "Profile">
             <div className = "main">
                 <div className = 'cover'/>
-                <div container className = 'header'>
+                <div className = 'header'>
                     <PFP src={ user.imageUrl }/>
                     <Typography className = 'full-name'> 
                         {user.firstName + " " + user.lastName} 
@@ -87,21 +83,27 @@ class Profile extends Component
                                 </Grid>
                             </Fragment>
                         }
-                        <Grid item className = 'edit'>
-                            <Button component={Link} to="#"> Edit Profile Info</Button>
-                        </Grid>
+                        {(this.props.authUser.userId === userId) &&
+                            <Grid item className = 'edit'>
+                                <Button component={Link} to="#"> Edit Profile Info</Button>
+                            </Grid>
+                        }  
                     </Grid>
                 </div> 
                 {/* <Card className = 'contact-info' elevation={5}>
                         
                 </Card> */}
                 <div className = 'placesList'>
-                    {
+                    {places.length? 
                     places.map((cur, i) => {
                                 return <Item 
                                     item={cur} key={i}
                                 />
                             })
+                            :
+                    <div>
+                        The user has no listed places
+                    </div>
                     }
                 </div>
             </div>
@@ -113,7 +115,7 @@ class Profile extends Component
         <div className = "Profile">
             <div className = "main">
                 <div className = 'cover'/>
-                <div container className = 'header'>
+                <div className = 'header'>
                     <div className = 'container'>
                         <Skeleton className = 'PFP-skeleton' variant = "circle"/>
                     </div>
@@ -134,4 +136,10 @@ class Profile extends Component
     }
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+    return {
+        authUser: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Profile)

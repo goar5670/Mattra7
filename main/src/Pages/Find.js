@@ -50,6 +50,8 @@ function Find()
 
 
     const fetchItems = () => {
+        console.log(filter);
+        setLoading(true);
         return axios.get('/places', {params: filter}).then((res) => {
             setTimeout(() => {
                 if(res.status === 200)
@@ -71,6 +73,7 @@ function Find()
     const handleChange = (event) => {
         setFilter(
             {
+                ...filter,
                 [event.target.name]: event.target.value
             }
         )
@@ -95,13 +98,13 @@ function Find()
                         >
                     </AccordionSummary>
                     <AccordionDetails>
-                        <form>
+                        <form onSubmit = {handleSubmit}>
                             <table>
                             <tbody>
                                 <tr>
                                     <td>
                                         <select name="governorate" value = {filter.governorate} onChange = {handleChange} defaultValue="0">
-                                            <option value="0" disabled>Governorate</option>
+                                            <option value="0">Governorate</option>
                                             <option value="Giza">Giza</option>
                                             <option value="Cairo">Cairo</option>
                                             <option value="Alexandria">Alexandria</option>
@@ -109,7 +112,7 @@ function Find()
                                     </td>
                                     <td>
                                         <select name="rooms" value = {filter.rooms} onChange = {handleChange} defaultValue="0">
-                                            <option value="0" disabled>Number of rooms</option>
+                                            <option value="0">Number of rooms</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -120,7 +123,7 @@ function Find()
                                     </td>
                                     <td>
                                         <select name="size" value = {filter.size} onChange = {handleChange} defaultValue="0">
-                                            <option value="0" disabled>Unit size</option>
+                                            <option value="0">Unit size</option>
                                             <option value={temp1}> {temp1} </option>
                                             <option value="75 - 100">75 - 100</option>
                                             <option value="100 - 150">100 - 150</option>
@@ -131,7 +134,7 @@ function Find()
                                     </td>
                                     <td>
                                         <select name="price" value = {filter.price} onChange = {handleChange} defaultValue="0">
-                                            <option value="0" disabled>Rent fee</option>
+                                            <option value="0">Rent fee</option>
                                             <option value={temp3}> {temp3} </option>
                                             <option value="1000 - 1500">1000 - 1500</option>
                                             <option value="1500 - 2000">1500 - 2000</option>
@@ -142,7 +145,7 @@ function Find()
                                     </td>
                                     <td>
                                         <select name="university" value = {filter.university} onChange = {handleChange} defaultValue="0">
-                                            <option value="0" disabled>Nearby university</option>
+                                            <option value="0">Nearby university</option>
                                             <option value="AUC">AUC</option>
                                             <option value="BUE">BUE</option>
                                             <option value="GUC">GUC</option>
@@ -156,7 +159,7 @@ function Find()
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input onSubmit={handleSubmit} type="submit" value = "Go" />
+                                        <input type="submit" value = "Go" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -166,13 +169,23 @@ function Find()
                 </Accordion>
                 <div className="content">
                     <div className="results">
-                        {loading? 
-                            <Loading /> :
-                            items.map((cur, i) => {
-                                return <Item 
-                                    item={cur} key={i}
-                                />
-                            })
+                        {loading?
+                            (<Loading />) 
+                            :
+                            (items.length? 
+                                (
+                                    items.map((cur, i) => {
+                                    return <Item 
+                                        item={cur} key={i}
+                                    />})
+                                )
+                                :
+                                (
+                                    <div>
+                                        No results
+                                    </div>
+                                )
+                            )
                         }
                         
                     </div>

@@ -44,32 +44,23 @@ exports.listPlace = (req, res) => {
 // }
 
 exports.getFilteredPlaces = (req, res) => {
-    // const mep = {
-    //     governorate: "==",
-    //     rooms: "==",
-    //     size: "==",
-    //     price: "==",
-    //     university: "==",
-    // }
-    // if(req.query.governorate == "0") mep.governorate = '"!="';
-    // if(req.query.rooms == "0") mep.rooms = "!=";
-    // if(req.query.size == "0") mep.size = "!=";
-    // if(req.query.price == "0") mep.price = "!=";
-    // if(req.query.university == "0") mep.university = "!=";
-    // console.log(mep.governorate);
+
     db.collection('places')
-    // .where('governorate', mep.governorate, req.query.governorate)
-    // .where('rooms', mep.rooms, req.query.rooms)
-    // .where('size', mep.size, req.query.size)
-    // .where('price', mep.price, req.query.price)
-    // .where('university', mep.university, req.query.university)
     .orderBy('createdAt', 'desc')
     .get()
     .then(data => {
         let places = [];
         data.forEach(doc => {
+            const place = doc.data();
+            if(
+                (req.query.governorate == "0" || req.query.governorate == place.governorate) &&
+                (req.query.rooms == "0" || req.query.rooms == place.rooms) &&
+                (req.query.size == "0" || req.query.size == place.size) &&
+                (req.query.price == "0" || req.query.price == place.price) &&
+                (req.query.university == "0" || req.query.university == place.university)
+            )
             places.push({
-                ...doc.data(),
+                ...place,
                 id: doc.id
             });
         });

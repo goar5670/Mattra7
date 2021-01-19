@@ -2,18 +2,20 @@
 
 - required fields, word limit in list a page
 
-- homepage - site summary
+- homepage site summary
 
-- page for every listed place
+- Ad page
 
 - mmkn yedit ay info l ay place + delete
 
-- profile for every user
-
-- backend 
+- upload images for places
 
 - design for place card
  
 - you have to complete some profile info before listing a place
 
 - feedback on users
+
+- NotFound Page design
+
+- refactoring code
