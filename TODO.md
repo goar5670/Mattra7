@@ -16,6 +16,8 @@
 
 - feedback on users
 
+- edit profile page
+
 - NotFound Page design
 
 - refactoring code

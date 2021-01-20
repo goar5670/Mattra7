@@ -4,6 +4,10 @@ import axios from "axios"
 import PhotoInput from "../Components/PhotoInput.js"
 import {Redirect} from "react-router-dom"
 
+//MUI
+import Button from '@material-ui/core/Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 //Redux
 import store from '../Redux/store'
 import { listPlace } from '../Redux/actions/dataActions' 
@@ -21,7 +25,6 @@ class List extends Component
     constructor(props) {
         super(props)
         this.state = { 
-            // id: "",
             title: "",
             description: "",
             pictures: [
@@ -31,19 +34,26 @@ class List extends Component
                 defaultPicture,
                 defaultPicture
             ],
-            governorate: "",
+            viewPictures: [
+                defaultPicture,
+                defaultPicture, 
+                defaultPicture,
+                defaultPicture,
+                defaultPicture
+            ],
+            governorate: "Giza",
             address: "",
-            rooms: "",
-            size: "",
-            price: "",
-            university: "",
-            redirect: null,
+            rooms: "1",
+            size: "< 75",
+            price: "< 1000",
+            university: "AUC",
+            loading: false,
         }
         this.handleUpload = this.handleUpload.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
- 
+
     handleChange(event)
     {
         this.setState(
@@ -53,8 +63,10 @@ class List extends Component
         )
     }
 
-    handleUpload(id, event) {
+    handleUpload(id, event) 
+    {
         var size = event.target.files[0].size/1024;
+        const file = event.target.files[0];
         if(size > 5*1024)
         {
             alert("File is too big. The limit is 5MB");
@@ -65,31 +77,63 @@ class List extends Component
             reader.readAsDataURL(event.target.files[0])
             reader.onload = () => {
                 if(reader.readyState === 2)
-                {
+                {        
                     this.setState(prev => {
-                        const list = prev.pictures.map((item, i) => {
+                        const list = prev.pictures.map((picture, i) => {
+                            if(id == i) return file
+                            else return picture
+                        })
+                        const viewPictures = prev.viewPictures.map((picture, i) => {
                             if(id == i) return reader.result
-                            else return item
+                            else return picture
                         })
                         return {
-                            pictures: list
+                            ...this.state,
+                            pictures: list,
+                            viewPictures
                         }
+                    }, () => {
+                        console.log(this.state);
                     })
                 }
             }
-            setTimeout(() => {
-                console.log(this.state);
-            }, 2000);
+            
         }
     }
 
     handleSubmit(event) {
-            axios.post("/places", {...this.state})
-            .then(() => {
-                this.props.history.push('/Home');
-            }) .catch(e => {
-                console.log(e);
-            })
+        event.preventDefault();
+        this.setState({
+            loading: true
+        })
+        let formData = new FormData();
+        Object.keys(this.state).forEach(key => {
+            let value = this.state[key];
+            if(key != 'viewPictures' && key != 'redirect')
+            {
+                // console.log(key, value);
+                if(key == 'pictures')
+                {
+                    value.forEach((cur, id) => {
+                        formData.append('file', cur);
+                    })
+                }
+                else
+                {
+                    formData.append(key, value);
+                }
+            }
+        })
+        // axios.post("/places", formData)
+        // .then(() => {
+        //     this.setState({
+        //         loading: false
+        //     })
+        //     window.location.href = "/Find";
+        // }) .catch(e => {
+        //     console.log(e);
+        // })
+
     }
 
     render()
@@ -104,6 +148,7 @@ class List extends Component
         //     if(id == 0) return <option disabled selected> {item} </option>
         //     else return <option> {item} </option>
         // }) 
+        const { loading } = this.state
         return (
             <div className="List">
                 <div className="main">
@@ -112,7 +157,7 @@ class List extends Component
                     </div>
                     <div className="content">
                         <div className= "listing-form">
-                            <form onSubmit = {this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit}>
                                 <table>
                                     <tbody>
                                     <tr>
@@ -159,11 +204,11 @@ class List extends Component
                                     <tr id="popover-photo">
                                         <td>
                                             <div className="photos">
-                                                <PhotoInput handleChange={this.handleUpload} id = "0" source={this.state.pictures[0]} c="first-photo"/>
-                                                <PhotoInput handleChange={this.handleUpload} id = "1" source={this.state.pictures[1]}/>
-                                                <PhotoInput handleChange={this.handleUpload} id = "2" source={this.state.pictures[2]}/>
-                                                <PhotoInput handleChange={this.handleUpload} id = "3" source={this.state.pictures[3]}/>
-                                                <PhotoInput handleChange={this.handleUpload} id = "4" source={this.state.pictures[4]} c="last-photo"/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "0" source={this.state.viewPictures[0]} c="first-photo"/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "1" source={this.state.viewPictures[1]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "2" source={this.state.viewPictures[2]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "3" source={this.state.viewPictures[3]}/>
+                                                <PhotoInput handleChange={this.handleUpload} id = "4" source={this.state.viewPictures[4]} c="last-photo"/>
                                             </div>
                                         </td>
                                         <UncontrolledPopover  placement="right" target="popover-photo" trigger="hover">
@@ -241,7 +286,7 @@ class List extends Component
                                             </UncontrolledPopover>
                                             
                                         </td>
-                                        <td className="m2"><p>m<span>2</span></p></td>
+                                        <td className="m2"><p>m<span className = 'power'>2</span></p></td>
                                     </tr>
                                     <tr>
                                         <td className="label">Rent fee</td>
@@ -287,7 +332,9 @@ class List extends Component
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type = "submit" value = "List it" />
+                                        <Button type="submit" disabled={loading}>
+                                            {loading? <CircularProgress color="white" /> : "List it" } 
+                                        </Button>
                                         </td>
                                     </tr>
                                     </tbody>

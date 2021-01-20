@@ -1,47 +1,92 @@
-const {db} = require('../util/admin')
+const {db, admin} = require('../util/admin')
+const { v4: uuid_v4 } = require('uuid');
+const config = require('../util/config')
+
 
 exports.listPlace = (req, res) => {
 
     let newPlace = {
-        owner: req.user.uid,
-        title: req.body.title,
-        description: req.body.description,
-        address: req.body.address,
-        governorate: req.body.governorate,
-        rooms: req.body.rooms,
-        price: req.body.price,
-        university: req.body.university,
-        size: req.body.size,
+        pictures: [],
+        owner: `${req.user.uid}`,
         createdAt: new Date().toISOString()
     }
+    const BusBoy = require("busboy");
+    const path = require('path')
+    const os = require('os')
+    const fs = require('fs')
+    const  busboy = new BusBoy({ headers: req.headers });
     //TODO validate place info
-    db
-    .collection('places')
-    .add(newPlace)
+    let placeId;
+    db.collection('places').add(newPlace)
     .then(doc => {
-        return res.status(200).json({message: req.user});
+        placeId = doc.id
     }) .catch(e => {
         console.error(e);
         res.status(500).json({error: e.code});
+    }) .then(() => {
+        let pictures = [];
+        let images = [];
+        let cnt = 0;
+        busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+            if(mimetype != 'image/jpeg' && mimetype != 'image/jpg' && mimetype != 'image/png')
+                return res.status(403).json({error: "uploaded file is not an image"});
+            const ext = filename.split(".")[filename.split(".").length-1];
+            const name = `${placeId}_${cnt}.${ext}`;
+            cnt++;
+            const filepath = path.join(os.tmpdir(), name);
+            file.pipe(fs.createWriteStream(filepath));
+            images.push({filepath, name, mimetype})
+        })
+
+        busboy.on('field', (fieldname, val) => {
+            if(fieldname != 'file')
+            {
+                newPlace[fieldname] = val;
+            }
+        })
+
+        busboy.on('finish', () => {
+            new Promise((resolve, reject) => {
+                let cmt = 0;
+                images.forEach((image) => {
+                    token = uuid_v4();
+                    admin.storage().bucket().upload(image.filepath, {
+                        gzip: true,
+                        resumable: false,
+                        metadata: {
+                            metadata: {
+                                contentType: image.mimetype,
+                                firebaseStorageDownloadTokens: token
+                            }
+                        }
+                    })
+                    .then(() => {
+                        const imageUrl =
+                        `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${image.name}?alt=media&token=${token}`;
+                        if(newPlace.pictures.push(imageUrl))
+                        {
+                            cmt++;
+                            if(cmt == images.length)
+                            {
+                                resolve();
+                            }
+                        }
+                    }) .catch(e => {
+                        reject(e);
+                    })
+                })
+            }) .then(() => {
+                return db.doc(`/places/${placeId}`).update(newPlace)
+                .then(() => {
+                    return res.status(201).json({message: "document added successfully"});
+                }) .catch(e => {
+                    console.error(e);
+                })
+            })
+        })
+        busboy.end(req.rawBody);
     })
 }
-// TODO
-// exports.getUserPlaces = (req, res) => {
-//     db.collection('places')
-//     .where('owner', '==', req.params.userId)
-//     .orderBy('createdAt', 'desc')
-//     .get()
-//     .then(data => {
-//         let places = []
-//         data.forEach(doc => {
-//             places.push(doc.data());
-//         })
-//         return res.status(200).json({places});
-//     }) .catch(e => {
-//         console.error(e);
-//         return res.status(500).json({error: e.code()});
-//     })
-// }
 
 exports.getFilteredPlaces = (req, res) => {
 
@@ -52,6 +97,7 @@ exports.getFilteredPlaces = (req, res) => {
         let places = [];
         data.forEach(doc => {
             const place = doc.data();
+            console.log(place);
             if(
                 (req.query.governorate == "0" || req.query.governorate == place.governorate) &&
                 (req.query.rooms == "0" || req.query.rooms == place.rooms) &&

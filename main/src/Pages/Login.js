@@ -31,7 +31,6 @@ class Login extends Component
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleClose = this.handleClose.bind(this)
-        this.handleOpen = this.handleOpen.bind(this)
     }
 
     componentDidMount()
@@ -84,12 +83,6 @@ class Login extends Component
             open: false
         })
     } 
-
-    handleOpen = () => {
-        this.setState({
-            open: true
-        })
-    }
 
     handleSubmit(event) {
         event.preventDefault()

@@ -106,8 +106,9 @@ exports.updatePFP = (req, res) => {
     const  busboy = new BusBoy({ headers: req.headers });
     let image = {}, name = "";
     const token = uuid_v4();
+    console.log(req.body);
     busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-        console.log(filename, mimetype);
+        console.log(fieldname, filename, mimetype);
         if(mimetype != 'image/jpeg' && mimetype != 'image/jpg' && mimetype != 'image/png')
             return res.status(403).json({error: "uploaded file is not an image"});
         const ext = filename.split(".")[filename.split(".").length-1];
