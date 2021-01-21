@@ -14,6 +14,9 @@ import Card from '@material-ui/core/Card'
 //Redux
 import { loginUser } from "../Redux/actions/userActions"
 import { connect } from 'react-redux'
+import store from '../Redux/store'
+import { SET_SNACKBAR, CLEAR_SNACKBAR } from '../Redux/types'
+
 
 class Login extends Component
 {
@@ -33,11 +36,15 @@ class Login extends Component
         this.handleClose = this.handleClose.bind(this)
     }
 
-    componentDidMount()
+    componentWillMount()
     {
-        this.setState({
-            open: this.props.location.state
-        })
+        if(this.props.UI.snackbar)
+        {
+            this.setState({
+                open: true
+            })
+            store.dispatch({ type: CLEAR_SNACKBAR })
+        }
     }
 
     componentWillReceiveProps(nextProps)
@@ -164,7 +171,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapActionsToProps = {
-    loginUser
+    loginUser,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Login)
