@@ -20,10 +20,8 @@ exports.listPlace = (req, res) => {
     db.collection('places').add(newPlace)
     .then(doc => {
         placeId = doc.id
-    }) .catch(e => {
-        console.error(e);
-        res.status(500).json({error: e.code});
-    }) .then(() => {
+    })
+    .then(() => {
         let pictures = [];
         let images = [];
         let cnt = 0;
@@ -85,6 +83,9 @@ exports.listPlace = (req, res) => {
             })
         })
         busboy.end(req.rawBody);
+    }) .catch(e => {
+        console.error(e);
+        res.status(500).json({error: e.code});
     })
 }
 
