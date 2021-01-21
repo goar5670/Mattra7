@@ -35,7 +35,9 @@ class Profile extends Component
         }
     }
 
-    componentWillMount = () => {
+    componentWillMount = () => 
+    {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
         this.setState({
             loading: true
         })

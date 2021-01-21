@@ -15,8 +15,7 @@ import Card from '@material-ui/core/Card'
 import { loginUser } from "../Redux/actions/userActions"
 import { connect } from 'react-redux'
 import store from '../Redux/store'
-import { SET_SNACKBAR, CLEAR_SNACKBAR } from '../Redux/types'
-
+import {CLEAR_SNACKBAR } from '../Redux/types'
 
 class Login extends Component
 {

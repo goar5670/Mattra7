@@ -11,6 +11,12 @@ class HomePage extends Component
         }
         this.handleChange = this.handleChange.bind(this)
     }
+
+    componentWillMount()
+    {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
+    }
+
     handleChange(event)
     {
         // this.props.history.push(`/${event.target.value}`);

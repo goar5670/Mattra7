@@ -22,7 +22,6 @@ exports.listPlace = (req, res) => {
         placeId = doc.id
     })
     .then(() => {
-        let pictures = [];
         let images = [];
         let cnt = 0;
         busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
@@ -65,14 +64,15 @@ exports.listPlace = (req, res) => {
                         {
                             cmt++;
                             if(cmt == images.length)
-                            {
                                 resolve();
-                            }
+                            
                         }
                     }) .catch(e => {
                         reject(e);
                     })
                 })
+                if(!images.length)
+                    resolve();
             }) .then(() => {
                 return db.doc(`/places/${placeId}`).update(newPlace)
                 .then(() => {

@@ -12,6 +12,8 @@ import muiAccordion from "@material-ui/core/Accordion"
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert'
 
 //Redux
 import { connect } from 'react-redux'
@@ -45,17 +47,25 @@ class Find extends Component
                 size: "0",
                 price: "0",
                 university: "0",
-            }
+            },
+            open: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     componentWillMount()
     {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
         this.setState({
-            loading: true
+            loading: true,
+            open: this.props.UI.snackbar
         })
+        if(this.props.UI.snackbar)
+        {
+            store.dispatch({ type: CLEAR_SNACKBAR });
+        }
         this.props.fetchPlaces(this.state.filter)
         .then(() => {
             setTimeout(() => {
@@ -64,6 +74,12 @@ class Find extends Component
                 })
             }, 1000)
         });
+    }
+
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
     }
 
     handleChange = (event) => {
@@ -104,6 +120,11 @@ class Find extends Component
         const temp5 = "> 5"
         return (
             <div className="Find">
+                <Snackbar open={this.state.open} autoHideDuration={4000} onClose={this.handleClose}>
+                    <Alert variant="filled" onClose={this.handleClose} severity="success">
+                        The place was listed successfully!
+                    </Alert>
+                </Snackbar>
                 <div className="main">
                     <div className="header">
                         <h1> Find a place</h1>

@@ -10,7 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 //Redux
 import store from '../Redux/store'
-import { listPlace } from '../Redux/actions/dataActions' 
+import { SET_SNACKBAR } from "../Redux/types.js"
 
 //Components
 import Footer from "../Components/Footer"
@@ -52,6 +52,11 @@ class List extends Component
         this.handleUpload = this.handleUpload.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillMount()
+    {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
     }
 
     handleChange(event)
@@ -124,15 +129,16 @@ class List extends Component
                 }
             }
         })
-        // axios.post("/places", formData)
-        // .then(() => {
-        //     this.setState({
-        //         loading: false
-        //     })
-        //     window.location.href = "/Find";
-        // }) .catch(e => {
-        //     console.log(e);
-        // })
+        axios.post("/places", formData)
+        .then(() => {
+            this.setState({
+                loading: false
+            })
+            store.dispatch({ type : SET_SNACKBAR })
+            this.props.history.push('/Find');
+        }) .catch(e => {
+            console.log(e);
+        })
 
     }
 
