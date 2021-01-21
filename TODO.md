@@ -8,8 +8,6 @@
 
 - mmkn yedit ay info l ay place + delete
 
-- upload images for places
-
 - design for place card
  
 - you have to complete some profile info before listing a place
