@@ -1,12 +1,15 @@
 import {
     SET_ERRORS,
     CLEAR_ERRORS,
-    LOADING_UI
+    LOADING_UI,
+    CLEAR_SNACKBAR,
+    SET_SNACKBAR
 } from '../types'
 
 const initialState = {
     loading: false,
-    errors: null
+    errors: null,
+    snackbar: false
 };
 
 export default function(state = initialState, action) 
@@ -30,6 +33,16 @@ export default function(state = initialState, action)
             return {
                 ...state,
                 loading: true
+            }
+        case CLEAR_SNACKBAR: 
+            return {
+                ...state,
+                snackbar: false
+            }
+        case SET_SNACKBAR:
+            return {
+                ...state,
+                snackbar: true
             }
         default: 
             return state;
