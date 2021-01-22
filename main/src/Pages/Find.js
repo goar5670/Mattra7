@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect} from "react"
 import axios from "axios"
 
 //Components
-import Item from "../Components/Item"
+import PlaceCard from "../Components/PlaceCard"
 import Loading from "../Components/Loading"
 import Footer from "../Components/Footer"
 
@@ -214,8 +214,8 @@ class Find extends Component
                                 (this.props.data.places.length? 
                                     (
                                         this.props.data.places.map((cur, i) => {
-                                        return <Item 
-                                            item={cur} key={i}
+                                        return <PlaceCard 
+                                            place={cur} key={i}
                                         />})
                                     )
                                     :

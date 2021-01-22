@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 //Components
 import Footer from "../Components/Footer"
 import PFP from '../Components/PFP'
-import Item from '../Components/Item'
+import PlaceCard from '../Components/PlaceCard'
 import Loading from '../Components/Loading'
 
 //MUI
@@ -98,8 +98,8 @@ class Profile extends Component
                 <div className = 'placesList'>
                     {places.length? 
                     places.map((cur, i) => {
-                                return <Item 
-                                    item={cur} key={i}
+                                return <PlaceCard 
+                                    place={cur} key={i}
                                 />
                             })
                             :

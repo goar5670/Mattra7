@@ -40,28 +40,82 @@ body {
     border-top-style: solid;
 }
 
-/* Item (Component) Style */
+/* placeCard (Component) Style */
 
-.item {
-    background: #e5e5e5;
-    padding: 20px 20px;
+.placeCard-link {
+    text-decoration: none !important;
+}
+
+.placeCard {
+    background: #e5e5e5 !important;
+    display: flex;
+    color: #545454 !important;
+    /* padding: 20px 20px; */
     margin-bottom: 50px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
-.item:hover {
-    background: #bababa;
+.placeCard .image-container {
+    width: 250px;
+    min-height: 100%;
+    border-right: 1px solid #aaa;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0px 20px 0px 1px;
 }
 
-.item:active {
-    background: #e5e5e5;
+.placeCard .image {
+    max-height: 100%;
+    max-width: 100%;
 }
-.item a {
+
+.placeCard .title {
+    color: #545454;    
+    margin-bottom: 10px;
+}
+
+.placeCard .description, .placeCard .address {
+    margin-bottom: 10px;
+    color: #8a8881;
+}
+
+.placeCard:hover .title {
+    color: #FF385C;
+}
+
+.placeCard .details{
+    width: 75%;
+}
+
+.placeCard .text {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+
+.placeCard .choices {
+    padding-right: 20px;
+    padding-top: 20px;
+    width: 17%;
+    float: right;
+    display: inline-block;
+}
+
+.placeCard .governorate, .placeCard .size, .placeCard .rooms, .placeCard .price, .placeCard .university {
+    margin-top: 10px;
+}
+
+.placeCard:active {
+    /* background: #e5e5e5; */
+}
+.placeCard a {
     text-decoration: none;
     color: #000;
 }
 
-.item-description {
+.placeCard-description {
     margin-right: 15px;
 }
 

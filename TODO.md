@@ -6,6 +6,8 @@
 
 - Ad page
 
+- errors for list page
+
 - mmkn yedit ay info l ay place + delete
 
 - design for place card
